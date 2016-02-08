@@ -1,0 +1,293 @@
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=7">
+    <title>Terminal</title>
+	<style media="screen" type="text/css">
+		body {
+			font-family: courier, fixed;
+			font-size: 22px;
+		}
+		.typewriter {
+			white-space: pre-wrap;
+			margin-right: -6px;
+			color: white;
+		}
+		.caret {
+			background: #777;
+		}
+	</style>
+    <!--[if IE]>
+        <style media="screen" type="text/css">
+			.typewriter {
+				margin-right: 0;
+			}
+		</style>
+    <![endif]-->
+</head>
+<body bgcolor='00000A'>
+    <div id="wrapper">
+        <span id="typewriter" class="typewriter"></span>
+        <span class="caret">&nbsp;</span>
+    </div>
+    <script type="text/javascript">
+		if (typeof Object.create !== "function") {
+			Object.create = function (object, properties) {
+				"use strict";
+				var property;
+				function O() {}
+				O.prototype = object;
+				if (properties !== undefined) {
+					for (property in properties) {
+						if (properties.hasOwnProperty(property)) {
+							O[property] = properties[property].value;
+						}
+					}
+				}
+				return new O();
+			};
+		}
+	</script>   
+	<script type="text/javascript">
+		function RealisticTypewriter() {
+			"use strict";
+			RealisticTypewriter.super_.call(this);
+		}
+		(function () {
+			"use strict";
+			RealisticTypewriter.super_ = Object;
+			RealisticTypewriter.prototype = Object.create(Object.prototype, {
+				constructor: {
+					value: RealisticTypewriter,
+					enumerable: false
+				},
+				minimumCharactersPerSecond: {
+					value: 10,
+					enumerable: false
+				},
+				/**
+				 * Maximum typing speed (characters per second.)
+				 * @property {read write Integer} ?
+				 */
+				maximumCharactersPerSecond: {
+					value: 15,
+					enumerable: false
+				},
+				/**
+				 * Minimum delay (in milliseconds) before start typing.
+				 * @property {read write Integer} ?
+				 */
+				minimumInitialDelay: {
+					value: 500,
+					enumerable: false
+				},
+				/**
+				 * Maximum delay (in milliseconds) before start typing.
+				 * @property {read write Integer} ?
+				 */
+				maximumInitialDelay: {
+					value: 1000,
+					enumerable: false
+				},
+				/**
+				 * Typing accuracy percentage.
+				 * @property {read write Integer} ?
+				 */
+				accuracy: {
+					value: 100,
+					enumerable: false
+				},
+				keyboardLayout: {
+					value: [
+						["`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "="],
+						["", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "[", "]", "\\"],
+						["", "A", "S", "D", "F", "G", "H", "J", "K", "L", ";", "'"],
+						["", "Z", "X", "C", "V", "B", "N", "M", ",", ".", "/"]
+					],
+					enumerable: false
+				}
+			});
+			function isLowerCase(character) {
+				return character === character.toLowerCase();
+			}
+			function randomInRange(from, to) {
+				return Math.floor(Math.random() * (to - from + 1) + from);
+			}
+			function getAdjacentCharacter(character, keyboardLayout) {
+				var row,
+					col,
+					adjacentCol,
+					adjacentRow,
+					adjacentCharacter,
+					random;
+				for (row = 0; row < keyboardLayout.length; row++) {
+					for (col = 0; col < keyboardLayout[row].length; col++) {
+						if (keyboardLayout[row][col].toLowerCase() === character) {
+							random = randomInRange(-1, 1);
+							adjacentRow = row + random;
+							if (adjacentRow >= keyboardLayout.length || adjacentRow < 0) {
+								adjacentRow += -2 * random;
+							}
+							if (col >= keyboardLayout[adjacentRow].length) {
+								col = keyboardLayout[adjacentRow].length - 1;
+							}
+							if (random === 0) {
+								random = [-1, 1][randomInRange(0, 1)];
+							} else {
+								random = randomInRange(-1, 1);
+							}
+							adjacentCol = col + random;
+							if (adjacentCol >= keyboardLayout[adjacentRow].length || adjacentCol < 0) {
+								adjacentCol += -2 * random;
+							}
+							if (isLowerCase(character)) {
+								adjacentCharacter = keyboardLayout[adjacentRow][adjacentCol].toLowerCase();
+							} else {
+								adjacentCharacter = keyboardLayout[adjacentRow][adjacentCol];
+							}
+							if (adjacentCharacter === "") {
+								return getAdjacentCharacter(character, keyboardLayout);
+							}
+							return adjacentCharacter;
+						}
+					}
+				}
+				return null;
+			}
+			function createCharacterGenerator(text, keyboardLayout, accuracy, checkInterval) {
+				var i = -1,
+					correcting = false,
+					typoIndex = -1;
+				return {
+					nextChar: function () {
+						if (i >= text.length - 1) {
+							if (typoIndex !== -1) {
+								correcting = true;
+							} else {
+								return null;
+							}
+						}
+						if (!correcting) {
+							i++;
+							correcting = typoIndex !== -1 && i % checkInterval === 0;
+							if (randomInRange(0, 100) > accuracy) {
+								var output = getAdjacentCharacter(text.charAt(i), keyboardLayout);
+								if (output === null) {
+									return text.charAt(i);
+								}
+								if (typoIndex === -1) {
+									typoIndex = i;
+									correcting = randomInRange(0, 1) === 1;
+								}
+								return output;
+							}
+							return text.charAt(i);
+						}
+						if (i >= typoIndex) {
+							i--;
+							return "\b";
+						}
+						correcting = false;
+						typoIndex = -1;
+						return text.charAt(++i);
+					}
+				};
+			}
+			RealisticTypewriter.prototype.type = function (text, htmlElement, callback) {
+				var self = this,
+					checkInterval = (this.maximumCharactersPerSecond + this.minimumCharactersPerSecond) / 2,
+					nextChar = createCharacterGenerator(text, this.keyboardLayout, this.accuracy, checkInterval).nextChar;
+				if (text === undefined || text.length === 0) {
+					return;
+				}
+				if (htmlElement.removeChild === undefined || htmlElement.lastChild === undefined ||
+						htmlElement.appendChild === undefined) {
+					throw "Invalid DOMElement!";
+				}
+				if (document === undefined) {
+					throw "Can't find document object!";
+				}
+				function writeAndCallback(internalCallback) {
+					var wait = randomInRange(1000 / self.minimumCharactersPerSecond, 1000 / self.maximumCharactersPerSecond),
+						ch = nextChar();
+					if (ch === null) {
+						internalCallback(true);
+						return;
+					}
+					setTimeout(function () {
+						if (ch === "\b") {
+							htmlElement.removeChild(htmlElement.lastChild);
+						} else {
+							var span = document.createElement("span");
+							if (ch === " ") {
+								// IE workaround!
+								span.innerHTML = "&nbsp;";
+							} else {
+								span.innerHTML = ch;
+							}
+							htmlElement.appendChild(span);
+						}
+						internalCallback(false);
+					}, wait);
+				}
+				setTimeout(function () {
+					(function iterate() {
+						writeAndCallback(function (finished) {
+							if (finished) {
+								if (callback !== undefined && typeof callback === "function") {
+									callback();
+								}
+								return;
+							}
+							setTimeout(iterate, 0);
+						});
+					}());
+				}, randomInRange(self.minimumInitialDelay, self.maximumInitialDelay));
+			};
+		}());
+
+</script>
+<script type="text/javascript">
+		"use strict";
+		function prompt(element, text) {
+			var span = document.createElement("span");
+			span.innerHTML = text;
+			element.appendChild(span);
+		}
+		function next() {
+			var realisticTypewriter = new RealisticTypewriter(),
+				typeWriterElement = document.getElementById("typewriter");
+			prompt(typeWriterElement, "<font color='green'>root@linux#</font> ");
+			realisticTypewriter.type("cat>>helloWorld.javauto", typeWriterElement, function () {			
+				prompt(typeWriterElement, "<br/><br/>");
+				realisticTypewriter.type("// helloWorld.javauto", typeWriterElement, function () {				
+					prompt(typeWriterElement, "<br/>");
+					realisticTypewriter.type('mouseClick("left", 50, 50);', typeWriterElement, function () {						
+						prompt(typeWriterElement, "<br/>");
+						realisticTypewriter.type("sleep(2000);", typeWriterElement, function () {					
+							prompt(typeWriterElement, "<br/><br/>");
+							realisticTypewriter.type('msgBox("Hello World");', typeWriterElement, function () {								
+								prompt(typeWriterElement, "<br/>");
+								realisticTypewriter.type('print("It\'s pretty easy right?"); //print to terminal', typeWriterElement, function () {
+										prompt(typeWriterElement, "<br/><br/><font color='green'>root@linux#</font> ");
+										realisticTypewriter.type('javauto helloWorld.javauto', typeWriterElement, function () {
+											setTimeout(function() {prompt(typeWriterElement, "<br/><font color='green'>root@linux#</font> ");}, 2000);
+											setTimeout(function() {realisticTypewriter.type('./helloWorld.jar', typeWriterElement);}, 2500);
+										});
+								});						
+							});						
+						});						
+					});				
+				});		
+			});
+		}
+		var readyStateCheckInterval = setInterval(function () {
+			if (document.readyState === "complete") {
+				next();
+				clearInterval(readyStateCheckInterval);
+			}
+		}, 10);
+</script>
+</body>
+</html>

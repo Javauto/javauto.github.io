@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Learn by Example | Javauto Documentation</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="../css/simple-sidebar.css" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="../js/jquery.js"></script>
+    <!-- load the side bar -->
+    <script src="../js/loadsidebar.js"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>                <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>    <![endif]-->
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrapper">
+      <!-- insert the sidebar -->
+      <div id="loadSideBar"><span style="display: hidden;">placeholder</span></div>
+      <!-- Page Content -->
+      <div id="page-content-wrapper"> <a href="#menu-toggle" style="outline: 0; position: fixed;"
+          id="menu-toggle">&lt;&lt;</a>
+        <div class="container-fluid" style="width: 80%">
+          <div class="row" id="introduction">
+            <div class="col-lg-12">
+              <h1>Learn by Example</h1>
+              <p>This section contains a lot of code examples and a small amount
+                of prose. To get the most out of it, run the examples and feel
+                free to experiment and modify them.</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="variables">
+            <div class="col-lg-12">
+              <h1>Variables &amp; User Input</h1>
+              <h3>Variables</h3>
+              <p>Variables in Javauto are similar to variables in java. There
+                are eight primitive variable types, but the four most commonly
+                used are <code>String</code>, <code>int</code>, <code>double</code>,
+                and <code>boolean</code>.</p>
+              <pre class="prettyprint">// the type must be specified when defining each variable
+String str = "This is a string."; // Strings must be enclosed in double quotes
+int number = 100;
+double pi = 3.1415926535;
+boolean b = true;
+
+// since these variables have already been defined we don't have to specify their types
+str = "A different string.";
+number = number - 50; // subtract 50 from our number
+pi = pi * 2; // double pi's value
+b = false; // change b's value
+
+// print it all
+print(str);
+print(number);
+print(pi);
+print(b);</pre>
+              <p>Output:</p>
+              <pre>A different string.
+50
+6.283185307
+false</pre>
+              <h3>User Input</h3>
+              <p>We can also get user input and store it in a variable.</p>
+              <pre class="prettyprint">// get input from command line and print it
+String userResponse = input("Enter your name: "); // get user input from the console
+String greeting = "Hello " + userResponse + ", it's nice to meet you.";
+print(greeting);
+
+// get input from a dialog box and display response in a message box
+userResponse = inputBox("Enter your name");
+greeting = "Hello " + userResponse + ", it's nice to meet you.";
+msgBox(greeting, "Hello There");</pre>
+              <h3>Type Conversion</h3>
+              <p>Converting between variables isn't hard. You can use <a href="functions.html#toString"
+                  target="_blank"><code style="color: blue;">toString</code></a>,
+                <a href="functions.html#toInt" target="_blank"><code style="color: blue;">toInt</code></a>,
+                or <a href="functions.html#toDouble" target="_blank"><code style="color: blue;">toDouble</code></a>
+                to convert any primitive type to one of these three.</p>
+              <pre class="prettyprint">String input = input("Enter a number: "); // get their number as a string
+int number = toInt(input); // get number as an int
+print(input + " + 5 = " + toString(number + 5)); // add five to it and display as string
+print(number/2); // divide number by 2 (will return an integer)
+print(toDouble(number)/2); // convert number to double and then divide</pre>
+              <p>Output:</p>
+              <pre>Enter a number: 5
+5 + 5 = 10
+2
+2.5</pre>
+              <h3>String Formatting</h3>
+              <p>For convenience Javauto has some basic syntax that makes string
+                formatting easier.</p>
+              <pre class="prettyprint">String name = "John";
+String greeting = "Hello %s, I'm %s." % (name, "Javauto");
+print(greeting);</pre>
+              <p>Output:</p>
+              <pre>Hello John, I'm Javauto.</pre>
+              <p>Note that even if we are only replacing one <code>%s</code>
+                the replacement value must be enclosed in <code>()</code></p>
+              <pre class="prettyprint">print("Hello %s." % ("John"));</pre>
+              <p>This can only be done with string literals, not string
+                variables. Consequently, <b>the following is not valid.</b></p>
+              <pre class="prettyprint">String str = "Hello %s";
+print(str % ("John")); // this will NOT work</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="operators">
+            <div class="col-lg-12">
+              <h1>Operators</h1>
+              <p>Operators are identical to Java's operators. These examples
+                briefly summarize them, view <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/operators.html"
+                  target="_blank">this page</a> for complete information.</p>
+              <h3>Mathematical Operators</h3>
+              <pre class="prettyprint">int a = 10;
+int b = 3;
+
+print("10 + 3 = " + (a + b)); // add the two
+print("10 x 3 = " + (a * b)); // multiply the two
+print("10 / 3 = " + (a / b)); // divide the two, since the result is in int it will be truncated, so instead of 3.333333333 it returns 3
+print("10 % 3 = " + (a % b)); // get the remainder. 10 divided by 3 has a remainder of 1</pre>
+              <p>Output</p>
+              <pre>10 + 3 = 13
+10 x 3 = 30
+10 / 3 = 3
+10 % 3 = 1</pre>
+              <h3>Logical Operators</h3>
+              <pre class="prettyprint">int     a = 10;
+int     b = 3;
+int     c = 3;
+boolean bool = true;
+
+print(a &gt; b); // 10 &gt; 3 =&gt; true
+print(b &lt; a); // 3 &lt; 10 =&gt; true
+print(b &gt; c); // 3 is not greater than 3 =&gt; false
+print(b == c); // 3 does equal 3 =&gt; true<br>print(c != a); // 3 does not equal 10 =&gt; true<br>print(b &gt;= c); // 3 is equal to 3, so greate than or equals works =&gt; true
+print(b &lt;= c); // less than will also work =&gt; true
+
+print(bool); // true is true
+print(!bool); // !true is the same as not true = false
+
+// statements can be grouped in ()
+print( !( (a + b) &lt; c ) ); // evaluates to not (13 &lt; 3). 13 is not less than 3. not (false) =&gt; true<br><br>// the and operator is &amp;&amp;<br>print( (b &lt; a) &amp;&amp; (c &lt; a) ); // both are true =&gt; true<br>print( (b &lt; a) &amp;&amp; (a &lt; c) ); // a is not less than c =&gt; false<br><br>// the or operator is ||<br>print( (b &lt; a) || (a &lt; c) ); // as long as one is true or is satisfied =&gt; true<br>print( (!bool) || (a &lt; c) ); // if neither is true =&gt; false </pre>
+              <p>Output:</p>
+              <pre>true
+true
+false
+true
+true
+true
+true
+true
+false
+true<br>true<br>false<br>true<br>false</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="control">
+            <div class="col-lg-12">
+              <h1>Control Flow</h1>
+              <p>Again, anything that works in Java will work in Javauto. For a
+                complete look Java control flow look at <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/flow.html"
+                  target="_blank">this page</a>.</p>
+              <h3>The If Statement</h3>
+              <pre class="prettyprint">int a = -1;
+     if (a &gt; 0) {
+	     print( "%s is positive!" % ( toString(a) ) );
+     } else if (a &lt; 0) {
+	     print( "%s is negative!" % ( toString(a) ) );
+     } else {
+	     // if it isn't positive or negative it's 0
+	     print( "%s is zero" % ( toString(a) ) );
+     }</pre>
+              <p>Note that string comparisons must be done with <code>.equals</code>
+                instead of <code>==</code></p>
+              <pre class="prettyprint">String name = "john";
+if (name == "john") { // this compares the two addresses in memory, will not always be true
+	print("This will not always happen");
+} 
+if (name.equals("john")) { // this compares the contents of the string, will equal true
+	print("This should always happend");
+}</pre>
+              <h3>The While Loop</h3>
+              <pre class="prettyprint">int i = 0;
+while ( i &lt;= 5 ) {
+	print(i);
+	i = i + 1; // add one to i
+}</pre>
+              <p>Output:</p>
+              <pre>0
+1
+2
+3
+4
+5</pre>
+              <h3>The For Loop</h3>
+              <pre class="prettyprint">for (int i = 0; i &lt;= 5; i++) {
+	print(i);
+}</pre>
+              <p>Output:</p>
+              <pre>0
+1
+2
+3
+4
+5</pre>
+              <pre class="prettyprint">String[] alpha = {"a","b","c","d","e","f"};
+for (String letter : alpha) {
+	print(letter);
+}</pre>
+              <p>Output:</p>
+              <pre>a
+b
+c
+d
+e
+f</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="functions">
+            <div class="col-lg-12">
+              <h1>User Defined Functions</h1>
+              <h3>Void functions</h3>
+              <p>Simple example:</p>
+              <pre class="prettyprint">// Define a function to move the mouse to random coordinates.
+// This function is void, meaning it doesn't return any value.
+func void randomMouseMove() {
+	int x = intGetRandom(0, SCREEN_WIDTH); // get a random int for x
+	int y = intGetRandom(0, SCREEN_HEIGHT); // get a random int for y
+	mouseMove(x,y); // move the mouse to these generated coordinates
+}
+
+msgBox("Moving the mouse to random coordinates...");
+randomMouseMove(); // execute the function</pre>
+              <p>More complex example:</p>
+              <pre class="prettyprint">// Move the mouse in a sin wave.
+// mouseSpeed is the speed to move the mouse at, from 0.00 to 1.00.
+// period is the period of the sin wave in arbitrary units. The distance over which one cycle is completed. Range 10-100.
+func void doTheWave(double mouseSpeed, double period) {
+        setSpeed(mouseSpeed); // set the mouse speed
+
+        int mid = SCREEN_HEIGHT/2;                    // the middle of the screen -- our Y origin
+        int amp = SCREEN_HEIGHT/2 - SCREEN_HEIGHT/10; // controls amplitude -- currently covers 8/10 of the screen vertically
+
+        // move the mouse left to right in sine wave
+        for (double d = 0.0; d &lt; period; d = d + 3.1415/16) {
+                int x = (int) ((d/period) * SCREEN_WIDTH); // x value is the % done times total width
+                int y = mid + (int) (Math.sin(d) * amp);  // y value is mid screen plus sin of x multiplied by amplitude
+                mouseMove(x,y);                           // move mouse to calculated value
+        }
+
+        // move the mouse back across to the left
+        for (double d = period; d &gt;= 0; d = d - 3.1415/16) {
+                int x = (int) ((d/period) * SCREEN_WIDTH); // x value is the % done times total width
+                int y = mid + (int) (Math.sin(d) * amp);  // y value is mid screen plus sin of x multiplied by amplitude
+                mouseMove(x,y);                           // move mouse to calculated value
+        }
+}
+
+// execute three times
+for (int i = 0; i &lt; 3; i++)
+        doTheWave(.85, 20);</pre>
+              <h3>Functions with a return value</h3>
+              <pre class="prettyprint">// This function tells us whether the mouse
+// is on the left side of the screen.
+func boolean isLeft() {
+	int xCoord = cursorGetPos()[0]; // get the x mouse position
+
+	if (xCoord &lt; (SCREEN_WIDTH / 2)) { // if we're left of the half way point
+		return true;
+	} else {
+		return false;
+	}
+}
+
+if (isLeft()) {
+	print("The cursor is on the left side of the screen.");
+} else {
+	print("The cursor is not on the left side of the screen.");
+}</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="global">
+            <div class="col-lg-12">
+              <h1>Global Variables</h1>
+              <p>Global variables are variables that you want to be accessible
+                anywhere in your code. If a variable is not global it will only
+                be available within the scope that it is declared. For instance,
+                a variable declared within a loop or a function will only be
+                available there.</p>
+              <p>If we run code like this: </p>
+              <pre class="prettyprint">String var = "A variable";
+func void printVar() {
+	print(var); // print our var
+}
+printVar();</pre>
+              <p>We will get this error:</p>
+              <pre>globalTest.ja line 3
+print(var);
+error: cannot find symbol
+symbol:   variable var
+location: class globalTest</pre>
+              <p>The solution is to use the <code>global</code> keyword to make
+                the variable available everywhere.</p>
+              <p>Make sure you define all your global variables at the beginning
+                of your code and assign them values later on. This is both
+                syntactically correct and organizationally helpful.</p>
+              <pre class="prettyprint">global String var; // let the compiler know it's global
+var = "A variable";
+func void printVar() {
+	print(var); // print our var
+}
+printVar();</pre>
+              <p>Now we get:</p>
+              <pre>A variable</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="structs">
+            <div class="col-lg-12">
+              <h1>Structs</h1>
+              <p>A struct is a sort of custom variable.</p>
+              <p> </p>
+              <pre class="prettyprint">// define a struct for a computer datatype
+// this is easier than creating three parallel arrays of varying types and keeping track of them
+struct computer {
+	String ID;
+	int width;
+	int height;
+}
+
+// define a function that can return a variable of type computer
+func computer getComputer() {
+	computer c = new computer(); // create an instance of this type of variable
+
+	c.ID = USER_NAME.toLowerCase() + "@" + SYSTEM_OS.toLowerCase(); // assign it an ID
+	c.width = SCREEN_WIDTH; // set the computer's screen width
+	c.height = SCREEN_HEIGHT; // set the computer's screen height
+
+	return c; // return all this data wrapped in our computer datatype
+}
+
+// now we call this function and store the data in "comp"
+computer comp = getComputer();
+
+// display its ID
+print("ID: %s" % (comp.ID));</pre>
+              <p>Output:</p>
+              <pre>ID: john@linux</pre>
+              <p>Or, if we run it with <code>sudo</code></p>
+              <pre>ID: root@linux</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="arrays">
+            <div class="col-lg-12">
+              <h1>Arrays</h1>
+              <p>Arrays are the same as in Java. In depth explanation <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/arrays.html"
+                  target="_blank">here</a>.</p>
+              <pre class="prettyprint">// define two arrays
+String[] strArr = {"each", "of", "these", "is", "an", "element"};
+int[] intArr =    {0, 1, 1, 2, 3, 5, 8, 13, 21, 34};
+
+print( strArr[0] ); // print the first element of the string array
+strArr[0] = "new!"; // change the first element
+print( strArr[0] ); // print it again
+
+// we can get the size of the array with .length
+int strArrSize = strArr.length; // this will return 6, there are six elements
+
+// print the last element
+print( strArr[strArrSize-1] ); // the last element is one less than the length
+
+// print everything in the intArray
+print("Index\tValue");
+for (int i = 0; i &lt; intArr.length; i++) {
+	print( toString(i) + "\t" + toString( intArr[i] ) );
+}</pre>
+              <p>Output:</p>
+              <pre>each
+new!
+element
+Index	Value
+0	0
+1	1
+2	1
+3	2
+4	3
+5	5
+6	8
+7	13
+8	21
+9	34</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="arraylists">
+            <div class="col-lg-12">
+              <h1>Array Lists</h1>
+              <p>The <code>ArrayList</code> class is borrowed directly from
+                Java and already imported for you.</p>
+              <p>An <code>ArrayList</code> is useful when you want a more
+                flexible type of array. You can append elements, remove
+                elements, search for elements, and sort with ease. Full
+                documentation on the <code>ArrayList</code> class can be found
+                <a href="http://docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html"
+                  target="_blank">here</a>.</p>
+              <p>They are defined like <code> ArrayList&lt;Type&gt; varName =
+                  new ArrayList&lt;Type&gt;();</code> where <code>Type</code>
+                is the variable type of each index. For example to define an <code>ArrayList</code>
+                of strings:</p>
+              <pre class="prettyprint">ArrayList&lt;String&gt; strList = new ArrayList&lt;String&gt;();</pre>
+              <p>Some of the most useful <code>ArrayList</code> functions are <code>.add</code>,
+                <code>.remove</code>, <code>.get</code>, <code>.set</code>, <code>.contains</code>,
+                and <code>.size</code>.</p>
+              <pre class="prettyprint">/* for example we could add some things to our string list */
+strList.add("one");
+strList.add("two");
+strList.add("three");
+strList.add("four");
+
+// our list now contains ["one", "two", "three", "four"]
+// strList.size() now returns 4
+// strList.contains("four") is true
+// strList.contains("five") is false
+
+/* now we can change around some values */
+strList.set(0, "five"); // list is now ["five", "two", "three", "four"]
+strList.add(1, "four"); // list is now ["five", "four", "two", "three", "four"]
+
+/* now we can remove some values */
+strList.remove("four"); // removes the first instace of "four"
+// our list is now ["five", "two", "three", "four"]
+strList.remove(0); // remove the first element
+// our list is now ["two", "three", "four"]</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="strings">
+            <div class="col-lg-12">
+              <h1>String Operations</h1>
+              <p>Strings in Javauto are <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/String.html"
+                  target="_blank">java.lang.String</a> objects. This means that
+                Java string operations should be used when working with strings.
+                There will be a brief overview here, but a more complete
+                explanation of the String class and its methods can be found <a
+                  href="http://www.tutorialspoint.com/java/java_strings.htm" target="_blank">here.</a></p>
+              <table class="table table-bordered" border="0">
+                <thead>
+                  <tr>
+                    <th>Method</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>.endsWith(String s)</code></td>
+                    <td>Returns <code>true</code> if a string ends with a
+                      certain string, or <code>false</code> if it does not.</td>
+                    <td>
+                      <pre class="prettyprint">"foobar".endsWith("bar"); // returns true</pre>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>.equals(String s)</code></td>
+                    <td>Returns <code>true</code> if a string is equal to a
+                      certain string, or <code>false</code> if it is not.</td>
+                    <td>
+                      <pre class="prettyprint">"foobar".equals("foobar"); // returns true</pre>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>.indexOf(String s)</code></td>
+                    <td>Returns the index of the first occurrence of string <code>s</code>
+                      within the string.</td>
+                    <td>
+                      <pre class="prettyprint">"foobar".indexOf("o"); // returns 1</pre>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>.lastIndexOf(String s)</code></td>
+                    <td>Returns the index of the last occurrence of a string <code>s</code>
+                      within the string.</td>
+                    <td>
+                      <pre class="prettyprint">"foobar".lastIndexOf("o"); // returns 2</pre>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>.length</code></td>
+                    <td>Returns the length of a string in characters.</td>
+                    <td>
+                      <pre class="prettyprint">"foobar".length; // returns 6</pre>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>.matches(String regex)</code></td>
+                    <td>Returns <code>true</code> if the string matches a
+                      certain regular expression, or <code>false</code> if it
+                      does not.</td>
+                    <td>
+                      <pre class="prettyprint">"foobar".matches("foo.*"); // returns true</pre>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>.replace(String old, String new)</code></td>
+                    <td>Replace all occurrences of <code>old</code> within a
+                      string with <code>new</code>.</td>
+                    <td>
+                      <pre class="prettyprint">"foobar".replace("foo", "crow"); // returns "crowbar"</pre>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>.startsWith(String s)</code></td>
+                    <td>Returns <code>true</code> if the string starts with <code>s</code>
+                      or <code>false</code> if it does not.</td>
+                    <td>
+                      <pre class="prettyprint">"foobar".startsWith("foo"); // returns true</pre>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>.substring(int start, int end)</code></td>
+                    <td>Returns the part of the string between <code>start</code>
+                      and <code>end</code>.</td>
+                    <td>
+                      <pre class="prettyprint">"foobar".substring(2,4); // returns "ob"</pre>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>.split(String regex)</code></td>
+                    <td>Returns a string array (<code>String[]</code>) of parts
+                      of the string split at the delimiter <code>regex</code>.</td>
+                    <td>
+                      <pre class="prettyprint">"foobar".split("b"); // returns [foo, ar]</pre>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>.toLowerCase()</code></td>
+                    <td>Returns a lower case version of the string.</td>
+                    <td>
+                      <pre class="prettyprint">"fOoBaR".toLowerCase(); // returns "foobar"</pre>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>.toUpperCase()</code></td>
+                    <td>Returns an upper case version of the string.</td>
+                    <td>
+                      <pre class="prettyprint">"foobar".toUpperCase(); // returns "FOOBAR"</pre>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>.trim()</code></td>
+                    <td>Trims trailing white space from the string.</td>
+                    <td>
+                      <pre class="prettyprint">"  foo bar ".trim(); // returns "foo bar"</pre>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="args">
+            <div class="col-lg-12">
+              <h1>Command Line Arguments</h1>
+              <p>Command line arguments are stored as a string array in the <code>args</code>
+                variable.</p>
+              <pre class="prettyprint">// cmdArgs.javauto
+for (String arg : args) {
+	print(arg);
+}</pre>
+              <p>The below shows output when run in different ways:</p>
+              <pre>john@ubuntu:~$ javauto cmdArgs.javauto
+john@ubuntu:~$ ./cmdArgs.jar these are different arguments "this is one"
+these
+are
+different
+arguments
+this is one</pre>
+              <p>Command line arguments can be easily parsed to look for flags
+                with <a href="functions.html#isFlagged" target="_blank"><code style="color: blue;">isFlagged</code></a>
+                and <a href="functions.html#getFlaggedArg" target="_blank"><code
+                    style="color: blue;">getFlaggedArg</code></a>.</p>
+              <pre class="prettyprint">//cmdArgs.javauto
+if (isFlagged(args, "-v")) {
+	print("Verbose mode activated.");<br>}<br><br>if (!isFlagged(args, "-f")) {
+	print("Usage: ./cmdArgs.jar -f file");
+} else {
+	print( "File: %s" % (getFlaggedArg(args, "-f")) );<br>}</pre>
+              <pre>john@ubuntu:~$ javauto cmdArgs.javauto
+john@ubuntu:~$ ./cmdArgs.jar
+Usage: ./cmdArgs.jar -f file
+john@ubuntu:~$ ./cmdArgs.jar -f someFile.txt
+File: someFile.txt
+john@ubuntu:~$ ./cmdArgs.jar -f someFile.txt -v
+Verbose mode activated.
+File: someFile.txt</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="java">
+            <div class="col-lg-12">
+              <h1>Java Integration</h1>
+              <p>It is important to keep in mind that code can be written in
+                regular Java at almost any time. The only two exceptions are
+                user defined functions and class variables -- writing these in
+                Java will result in an error.</p>
+              <p>This means that you can use Java classes and import Java
+                libraries, in addition to using Java code.</p>
+              <pre class="prettyprint">//both of the below are valid
+System.out.println("Printing with Java");
+print("Printing with Javauto");</pre>
+            </div>
+          </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-33173418-2', 'auto');
+    ga('send', 'pageview');
+
+	</script>
+        <!-- /#wrapper -->
+        <!-- Bootstrap Core JavaScript -->
+        <script src="../js/bootstrap.min.js"></script>
+        <!-- Prettify for source code highlighting -->
+        <script src="../js/prettify/run_prettify.js"> </script>
+        <!-- Make prettify elements match bootstrap theme -->
+        <style>
+pre.prettyprint {
+	padding: 8px;
+	border-color: #CCC;
+}
+		</style>
+        <!-- Menu Toggle Script -->
+        <script>
+$("#menu-toggle").click(function(e) {
+		e.preventDefault();
+		$("#wrapper").toggleClass("toggled");
+		var toggleText = document.getElementById("menu-toggle");
+		if (toggleText.innerHTML == "&gt;&gt;") {
+		toggleText.innerHTML = "<<";
+		} else {
+		toggleText.innerHTML = ">>";
+		}
+		});
+	</script> </div>
+	    <script>
+        $(document).ready( function() { 
+			                        $('body').prepend("<div id='betanotif' style='position: absolute; width: " + $("#wrapper").width()  + "; right: 0; margin-bottom: 0px;' class='alert alert-info'><strong>Javauto is in beta right now.</strong> If you have any suggestions (or bugs to report) please <a href='mailto:matthewdowney20@gmail.com'>send an email</a>!</div>");
+						        } );
+    </script>
+
+    </div>
+  </body>
+</html>

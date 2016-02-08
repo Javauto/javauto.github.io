@@ -1,0 +1,403 @@
+* cKeyDown
+//hold down the a key for 5 seconds
+cKeyDown(65);
+sleep(5000);
+cKeyUp(65);
+
+//press the b key
+cKeyPress(66);
+
+
+
+* cKeyPress
+//hold down the a key for 5 seconds
+cKeyDown(65);
+sleep(5000);
+cKeyUp(65);
+
+//press the b key
+cKeyPress(66);
+
+
+
+* cKeyUp
+//hold down the a key for 5 seconds
+cKeyDown(65);
+sleep(5000);
+cKeyUp(65);
+
+//press the b key
+cKeyPress(66);
+
+
+
+* clipboardGet
+//add something to the clipboard
+String clip = "put me in the clipboard!";
+clipboardPut(clip);
+
+//retrieve clipboard contents
+String clipContents = clipboardGet();
+msgBox(clipContents);
+
+
+
+* clipboardPut
+//add something to the clipboard
+String clip = "put me in the clipboard!";
+clipboardPut(clip);
+
+//retrieve clipboard contents
+String clipContents = clipboardGet();
+msgBox(clipContents);
+
+
+
+* cursorGetPos
+//get the cursor position
+int[] cursorPos = cursorGetPos();
+msgBox("Cursor Position is (" + cursorPos[0] + "," + cursorPos[1] + ")");
+
+
+
+* dateTimeGet
+//displays time and date in a yyyy/mm/dd hh:mm:ss format
+String dateTime = dateTimeGet();
+print("The time/date is " + dateTime); 
+
+
+
+* exec
+//attempt to guess platform and then run the dir/ls command depending on windows/other
+msgBox("Attempting to run dir/ls and output to command line.");
+String osGuess;
+if (SYSTEM_OS.toLowerCase().contains("windows")) {
+	osGuess = "Windows";
+} else {
+	osGuess = "Others";
+}
+if (osGuess.equals("Windows")) {
+	String cmdOutPut = exec("cmd /c dir"); 
+	System.out.println(cmdOutPut);
+} else {
+	String cmdOutPut = exec("ls"); 
+	System.out.println(cmdOutPut);
+} 
+
+
+
+* fileList
+//get file list
+String[] files = fileList("/home/Directory");
+
+//print each file name
+for (int i=0; i<files.length; i++) {
+	print(files[i]);
+}
+
+
+
+* fileRead
+//write data to file
+String data = inputBox("What should I write to test file?");
+boolean success = fileWrite("test.txt", data);
+msgBox(toStr(success)); //display true/false based on success/failure
+
+//read data from file
+String test = fileRead("test.txt");
+msgBox(test); //display the data
+
+
+
+* fileWrite
+//write data to file
+String data = inputBox("What should I write to test file?");
+boolean success = fileWrite("test.txt", data);
+msgBox(toStr(success)); //display true/false based on success/failure
+
+//read data from file
+String test = fileRead("test.txt");
+msgBox(test); //display the data
+
+
+
+* inputBox
+//get user input
+String input = inputBox("Enter something: ", "I'm a title");
+print("You said: " + input);
+
+
+
+* inputList
+//open a website based on user choice
+String[] inputListObjects = {"https://www.google.com/", "http://www.yahoo.com/", "http://www.bing.com/", "http://www.defaultChoice.com/"};
+String inputListResult = inputList( "Choose a website: ", "Choose one", inputListObjects, inputListObjects[3] );
+open(inputListResult); 
+
+
+
+* inputPassword
+//get password input
+String passwordResult = inputPassword("Input a password: "); 
+print("Your password is: " + passwordResult);
+
+
+
+* intGetRandom
+//get a random number between 0 and 5
+int random = intGetRandom(0,5);
+print(random);
+
+//move mouse to random coordinates
+int randX = intGetRandom(0, SCREEN_WIDTH);
+int randY = intGetRandom(0, SCREEN_HEIGHT);
+mouseMove(randX, randY);
+
+
+
+* keyDown
+//Hold down the 'a' key for 5 seconds
+keyDown("a");
+sleep(5000);
+keyUp("a");
+
+//send the Ctrl + Alt + Delete Combo
+keyDown("{CTRL}");
+keyDown("{ALT}");
+keyDown("{DELETE}");
+
+keyUp("{DELETE}");
+keyUp("{ALT}");
+keyUp("{CTRL}");
+
+
+
+* keyPress
+//press backspace
+keyPress("{BACKSPACE}");
+
+//press backspace 100 times
+for (int i=0; i<=100; i++) {
+	keyPress("{BACKSPACE}");
+}
+
+
+
+* keyUp
+//Hold down the 'a' key for 5 seconds
+keyDown("a");
+sleep(5000);
+keyUp("a");
+
+//send the Ctrl + Alt + Delete Combo
+keyDown("{CTRL}");
+keyDown("{ALT}");
+keyDown("{DELETE}");
+
+keyUp("{DELETE}");
+keyUp("{ALT}");
+keyUp("{CTRL}");
+
+
+
+* mouseClick
+//click the left mouse button
+mouseClick("left");
+
+//click the right mouse button
+mouseClick("right");
+
+//mouseclick at certain coordinates
+mouseClick("left", 500,500);
+
+//mouseClick at windows start button
+mouseClick("left", 15, SCREEN_HEIGHT-15);
+
+
+
+* mouseClickDrag
+//click and drag the mouse from one location
+//to another, eg drag an icon into the recycle bin
+mouseClickDrag("left", 500, 500, 50, 50);
+
+
+
+* mouseDown
+//hold down the left mouse button for two seconds
+mouseDown("left"); //press the button
+sleep(2000);
+mouseUp("left"); //release the button
+
+
+
+* mouseMove
+//move the mouse to coordinates
+mouseMove(50, 50);
+ 
+
+
+
+* mouseScrollDown
+//scroll the mouse wheel up then down
+mouseScrollDown(); //scroll down
+sleep(1000); //wait one second
+mouseScrollUp(); //scroll up
+
+
+
+* mouseScrollUp
+	private static void mouseScrollUp() {
+		try {
+			Robot r = new Robot();
+			r.mouseWheel(-100);
+		} catch(AWTException e) {
+			throw new RuntimeException(e);
+		}
+	}
+		 
+
+
+
+* mouseUp
+//hold down the left mouse button for two seconds
+mouseDown("left"); //press the button
+sleep(2000);
+mouseUp("left"); //release the button
+
+
+
+* msgBox
+msgBox("I'm about to do nothing for 4 seconds!", "This is a title!"); //show message box with a title
+sleep(4000); //wait 4 seconds
+msgBox("Done!\nI'm a multiline message box\n\tI'm indented."); //show message box
+
+
+
+* open
+//open can open either a file or a website
+
+//open google
+open("https://www.google.com/");
+
+//open a screenshot we take
+String fileName = "screen.png";
+screenShot(fileName);
+open(fileName);
+
+//open a website based on user choice
+String[] inputListObjects = {"https://www.google.com/", "http://www.yahoo.com/", "http://www.bing.com/"};
+String inputListResult = inputList( "Choose a website: ", "Choose one", inputListObjects );
+open(inputListResult);
+
+
+
+* pixelGetColor
+//get mouse coordinates
+int[] mousePos = cursorGetPos();
+
+//get the color of pixel at mouse coordinates
+Color myColor = pixelGetColor(mousePos[0], mousePos[1]);
+
+msgBox("A string representation of this color is: " + toStr(myColor));
+
+//search for the coordinates of the color with pixelSearch
+int[] colorCoords = pixelSearch( myColor );
+print("X:" + colorCoords[0] + "\nY:" + colorCoords[1]);
+
+
+
+* pixelSearch
+//first we need to create a color to search for
+
+//we can create using RGB values for color
+//rgb of (255,255,0) is pure yellow
+Color searchForMe = new Color( 255, 255, 0);
+
+//or we could get the color at a certain pixel
+//Color searchForMe = pixelGetColor(x, y);
+
+//to search part of the screen:
+//int[] coords = pixelSearch( searchForMe, 500, 500, 1000, 1000 );
+
+//to search twice as fast (searches every other pixel)
+//int[] coords = pixelSearch( searchForMe, 500, 500, 1000, 1000, 2 );
+
+//search the whole screen for the color
+int[] coords = pixelSearch( searchForMe);
+
+//pixelSearch will return negative
+//results if it can't find the color
+if ((coords[0] >= 0) && (coords[1] >= 0)) {
+	msgBox("We found the color!\nThe coordinates of the color are\nX:" + coords[0] +"\nY:" + coords[1]);	
+} else {
+	msgBox("Looks like we didn't find the color");
+}
+
+
+
+* print
+print("I'm displaying a value to the command line!");
+System.out.println("I'm also doing that!");
+//they both do the same thing
+//print is just easier to type :D
+
+
+
+* screenShot
+//take a screenshot of the whole screen and save to myScreenShot.png
+screenShot("myScreenShot.png");
+
+//take a partial screenshot from coordinates (0,0) to (100, 100)
+Boolean success = screenShot("anotherOne.png", 0,0, 100, 100);
+
+//check the success of our screenshot
+if (success) {
+msgBox("Screenshot taken successfully.");
+} else {
+msgBox("Looks like we couldn't take a screenshot!");
+}
+
+
+
+* send
+//simulate the keyboard typing some things
+send("{TAB}Dear Mrs.Jones,{ENTER}");
+send("{BACKSPACE}");
+send("I can also type weird punctuation ~$%^&*+-_, yay!?");
+
+
+
+* sleep
+msgBox("I'm about to do nothing for 4 seconds!", "This is a title!"); //show message box with a title
+sleep(4000); //wait 4 seconds
+msgBox("Done!"); //show message box
+
+
+
+* toChar
+ String foo = "I'm a string";
+ String bar = "a";
+ 
+ print( toChar(foo) ); //prints 'I'
+ print( toChar(bar) ); //prints 'a'
+
+
+
+* toDouble
+ String pi = "3.1415926535";
+ int i = 5;
+ 
+ print( toDouble(pi) ); //prints 3.1415926535
+ print( toDouble(i) ); //prints 5.0
+
+
+
+* toInt
+String year = "365"; //create a String
+double pi = 3.1415926535; //create a double (decimal)
+
+print( toInt(year) ); //will print 365
+print( toInt(pi) ); //will print 3
+
+
+

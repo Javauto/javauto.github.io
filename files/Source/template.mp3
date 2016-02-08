@@ -1,0 +1,1021 @@
+import java.awt.Robot; //to control mouse & keyboard
+import java.awt.MouseInfo; //this lets us retrieve the mouse coordinates
+import java.awt.AWTException; //for errors
+import java.awt.event.InputEvent; //contains constants for mouse buttons etc
+import java.awt.Toolkit; //used to get screen size
+import java.awt.Dimension; //variable type that screen size is returned in
+import java.awt.event.KeyEvent; //for key presses
+import javax.swing.JOptionPane; //for message box
+import javax.swing.*;  //for input  messages etc 
+import java.awt.Desktop; //to open files & links
+import java.net.URI; //to manipulate URLS
+import java.io.BufferedReader; //to read from console
+import java.io.InputStreamReader; //to read from console
+import java.awt.Rectangle; //to create rectangle used for screenshot
+import java.awt.image.BufferedImage; //to take screenshot
+import java.io.File; //to save image
+import javax.imageio.ImageIO; //to craft image from coordinates
+import java.awt.Color; //to handle colors
+import java.lang.Object; //to work with Objects
+import java.util.Random; //to create random numbers
+import java.util.Date; //getting the date
+import java.text.DateFormat; //formatting the data
+import java.text.SimpleDateFormat; //formatting the date
+import java.awt.datatransfer.*;
+import java.io.*;
+//user generated imports
+{<userImports>}
+
+// Important things: http://docs.oracle.com/javase/1.3/docs/api/java/awt/Robot.html
+
+
+public class {<userClassName>} {
+	
+	private static final String WORKING_DIR = System.getProperty("user.dir");
+	private static final int SCREEN_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
+	private static final int SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height;
+	private static final String SYSTEM_OS = System.getProperty("os.name");
+	private static final String USER_NAME = System.getProperty("user.name");
+	private static final String USER_HOME_DIR = System.getProperty("user.home");
+	
+	public static void main(String[] args) {
+		{<userMainCode>}
+	}
+	
+	//user generated functions
+	{<userFunctions>}
+	
+	
+	private static void send(String s) {
+		//compensate for special characters
+		s = s.replace("{ENTER}", "\n");
+		s = s.replace("{TAB}", "\t");
+		s = s.replace("{WIN}", "\u0259");
+		s = s.replace("{SHIFT}", "\u025A");
+		s = s.replace("{DELETE}", "\u025B");
+		s = s.replace("{CTRL}", "\u025C");
+		s = s.replace("{ALT}", "\u025D");
+		s = s.replace("{ESC}", "\u025E");
+		s = s.replace("{MAC}", "\u025F");
+		s = s.replace("{F1}", "\u1E90");
+		s = s.replace("{F2}", "\u1E91");
+		s = s.replace("{F3}", "\u1E92");
+		s = s.replace("{F4}", "\u1E93");
+		s = s.replace("{F5}", "\u1E94");
+		s = s.replace("{F6}", "\u1E95");
+		s = s.replace("{F7}", "\u1E96");
+		s = s.replace("{F8}", "\u1E97");
+		s = s.replace("{F9}", "\u1E98");
+		s = s.replace("{F10}", "\u1E99");
+		s = s.replace("{F11}", "\u1E9A");
+		s = s.replace("{F12}", "\u1E9B");
+		s = s.replace("{F13}", "\u1E9C");
+		s = s.replace("{F14}", "\u1E9D");
+		s = s.replace("{F15}", "\u1E9E");
+		s = s.replace("{F16}", "\u1E9F");
+		s = s.replace("{F17}", "\u1EA0");
+		s = s.replace("{F18}", "\u1EA1");
+		s = s.replace("{F19}", "\u1EA2");
+		s = s.replace("{F20}", "\u1EA3");
+		s = s.replace("{F21}", "\u1EA4");
+		s = s.replace("{F22}", "\u1EA5");
+		s = s.replace("{F23}", "\u1EA6");
+		s = s.replace("{F24}", "\u1EA7");
+		s = s.replace("{BACKSPACE}", "\b");
+		for (int i = 0; i < s.length(); i++){
+			char c = s.charAt(i);
+			sendChar(c);
+		}
+	}
+	
+	private static void sendChar(char c) {
+		switch (c) {
+        case 'a': keyType(KeyEvent.VK_A); break;
+        case 'b': keyType(KeyEvent.VK_B); break;
+        case 'c': keyType(KeyEvent.VK_C); break;
+        case 'd': keyType(KeyEvent.VK_D); break;
+        case 'e': keyType(KeyEvent.VK_E); break;
+        case 'f': keyType(KeyEvent.VK_F); break;
+        case 'g': keyType(KeyEvent.VK_G); break;
+        case 'h': keyType(KeyEvent.VK_H); break;
+        case 'i': keyType(KeyEvent.VK_I); break;
+        case 'j': keyType(KeyEvent.VK_J); break;
+        case 'k': keyType(KeyEvent.VK_K); break;
+        case 'l': keyType(KeyEvent.VK_L); break;
+        case 'm': keyType(KeyEvent.VK_M); break;
+        case 'n': keyType(KeyEvent.VK_N); break;
+        case 'o': keyType(KeyEvent.VK_O); break;
+        case 'p': keyType(KeyEvent.VK_P); break;
+        case 'q': keyType(KeyEvent.VK_Q); break;
+        case 'r': keyType(KeyEvent.VK_R); break;
+        case 's': keyType(KeyEvent.VK_S); break;
+        case 't': keyType(KeyEvent.VK_T); break;
+        case 'u': keyType(KeyEvent.VK_U); break;
+        case 'v': keyType(KeyEvent.VK_V); break;
+        case 'w': keyType(KeyEvent.VK_W); break;
+        case 'x': keyType(KeyEvent.VK_X); break;
+        case 'y': keyType(KeyEvent.VK_Y); break;
+        case 'z': keyType(KeyEvent.VK_Z); break;
+        case 'A': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_A); break;
+        case 'B': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_B); break;
+        case 'C': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_C); break;
+        case 'D': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_D); break;
+        case 'E': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_E); break;
+        case 'F': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_F); break;
+        case 'G': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_G); break;
+        case 'H': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_H); break;
+        case 'I': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_I); break;
+        case 'J': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_J); break;
+        case 'K': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_K); break;
+        case 'L': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_L); break;
+        case 'M': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_M); break;
+        case 'N': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_N); break;
+        case 'O': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_O); break;
+        case 'P': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_P); break;
+        case 'Q': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_Q); break;
+        case 'R': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_R); break;
+        case 'S': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_S); break;
+        case 'T': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_T); break;
+        case 'U': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_U); break;
+        case 'V': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_V); break;
+        case 'W': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_W); break;
+        case 'X': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_X); break;
+        case 'Y': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_Y); break;
+        case 'Z': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_Z); break;
+        case '`': keyType(KeyEvent.VK_BACK_QUOTE); break;
+        case '0': keyType(KeyEvent.VK_0); break;
+        case '1': keyType(KeyEvent.VK_1); break;
+        case '2': keyType(KeyEvent.VK_2); break;
+        case '3': keyType(KeyEvent.VK_3); break;
+        case '4': keyType(KeyEvent.VK_4); break;
+        case '5': keyType(KeyEvent.VK_5); break;
+        case '6': keyType(KeyEvent.VK_6); break;
+        case '7': keyType(KeyEvent.VK_7); break;
+        case '8': keyType(KeyEvent.VK_8); break;
+        case '9': keyType(KeyEvent.VK_9); break;
+        case '-': keyType(KeyEvent.VK_MINUS); break;
+        case '=': keyType(KeyEvent.VK_EQUALS); break;
+        case '~': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_BACK_QUOTE); break;
+        case '!': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_1); break;
+        case '@': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_2); break;
+        case '#': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_3); break;
+        case '$': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_4); break;
+        case '%': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_5); break;
+        case '^': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_6); break;
+        case '&': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_7); break;
+        case '*': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_8); break;
+        case '(': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_9); break;
+        case ')': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_0); break;
+        case '_': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_MINUS); break;
+        case '+': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_EQUALS); break;
+        case '\t': keyType(KeyEvent.VK_TAB); break;
+        case '\n': keyType(KeyEvent.VK_ENTER); break;
+        case '[': keyType(KeyEvent.VK_OPEN_BRACKET); break;
+        case ']': keyType(KeyEvent.VK_CLOSE_BRACKET); break;
+        case '\\': keyType(KeyEvent.VK_BACK_SLASH); break;
+        case '{': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_OPEN_BRACKET); break;
+        case '}': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_CLOSE_BRACKET); break;
+        case '|': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_BACK_SLASH); break;
+        case ';': keyType(KeyEvent.VK_SEMICOLON); break;
+        case ':': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_SEMICOLON); break;
+        case '\'': keyType(KeyEvent.VK_QUOTE); break;
+        case '\"': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_QUOTE); break;
+        case ',': keyType(KeyEvent.VK_COMMA); break;
+        case '<': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_COMMA); break;
+        case '.': keyType(KeyEvent.VK_PERIOD); break;
+        case '>': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_PERIOD); break;
+        case '/': keyType(KeyEvent.VK_SLASH); break;
+        case '?': keyType(KeyEvent.VK_SHIFT, KeyEvent.VK_SLASH); break;
+        case ' ': keyType(KeyEvent.VK_SPACE); break;
+		case '\u0259': keyType(KeyEvent.VK_WINDOWS); break;
+		case '\u025A': keyType(KeyEvent.VK_SHIFT); break;
+		case '\u025B': keyType(KeyEvent.VK_DELETE); break;
+		case '\u025C': keyType(KeyEvent.VK_CONTROL); break;
+		case '\u025D': keyType(KeyEvent.VK_ALT); break;
+		case '\u025E': keyType(KeyEvent.VK_ESCAPE); break;
+		case '\u025F': keyType(KeyEvent.VK_META); break;
+		case '\u1E90': keyType(KeyEvent.VK_F1); break;
+		case '\u1E91': keyType(KeyEvent.VK_F2); break;
+		case '\u1E92': keyType(KeyEvent.VK_F3); break;
+		case '\u1E93': keyType(KeyEvent.VK_F4); break;
+		case '\u1E94': keyType(KeyEvent.VK_F5); break;
+		case '\u1E95': keyType(KeyEvent.VK_F6); break;
+		case '\u1E96': keyType(KeyEvent.VK_F7); break;
+		case '\u1E97': keyType(KeyEvent.VK_F8); break;
+		case '\u1E98': keyType(KeyEvent.VK_F9); break;
+		case '\u1E99': keyType(KeyEvent.VK_F10); break;
+		case '\u1E9A': keyType(KeyEvent.VK_F11); break;
+		case '\u1E9B': keyType(KeyEvent.VK_F12); break;
+		case '\u1E9C': keyType(KeyEvent.VK_F13); break;
+		case '\u1E9D': keyType(KeyEvent.VK_F14); break;
+		case '\u1E9E': keyType(KeyEvent.VK_F15); break;
+		case '\u1E9F': keyType(KeyEvent.VK_F16); break;
+		case '\u1EA0': keyType(KeyEvent.VK_F17); break;
+		case '\u1EA1': keyType(KeyEvent.VK_F18); break;
+		case '\u1EA2': keyType(KeyEvent.VK_F19); break;
+		case '\u1EA3': keyType(KeyEvent.VK_F20); break;
+		case '\u1EA4': keyType(KeyEvent.VK_F21); break;
+		case '\u1EA5': keyType(KeyEvent.VK_F22); break;
+		case '\u1EA6': keyType(KeyEvent.VK_F23); break;
+		case '\u1EA7': keyType(KeyEvent.VK_F24); break;
+		case '\b' : keyType(KeyEvent.VK_BACK_SPACE);break;
+        default:
+            throw new IllegalArgumentException("Cannot type character " + c);
+        }
+	}
+	
+	private static void keyType(int... keyCodes) {
+        keyType(keyCodes, 0, keyCodes.length);
+    }
+
+    private static void keyType(int[] keyCodes, int offset, int length) {
+        if (length == 0) {
+            return;
+        }
+		try {
+			Robot r = new Robot();
+			r.keyPress(keyCodes[offset]);
+			keyType(keyCodes, offset + 1, length - 1);
+			r.keyRelease(keyCodes[offset]);
+		}
+		catch(AWTException e) { //throw an error
+			throw new RuntimeException(e);
+		}
+    }
+	
+	private static void keyDown( String s ) {
+		//compensate for special characters
+		s = s.replace("{ENTER}", "\n");
+		s = s.replace("{BACKSPACE}", "\b");
+		s = s.replace("{TAB}", "\t");
+		s = s.replace("{WIN}", "\u0259");
+		s = s.replace("{SHIFT}", "\u025A");
+		s = s.replace("{DELETE}", "\u025B");
+		s = s.replace("{CTRL}", "\u025C");
+		s = s.replace("{ALT}", "\u025D");
+		s = s.replace("{ESC}", "\u025E");
+		s = s.replace("{MAC}", "\u025F");
+		s = s.replace("{F1}", "\u1E90");
+		s = s.replace("{F2}", "\u1E91");
+		s = s.replace("{F3}", "\u1E92");
+		s = s.replace("{F4}", "\u1E93");
+		s = s.replace("{F5}", "\u1E94");
+		s = s.replace("{F6}", "\u1E95");
+		s = s.replace("{F7}", "\u1E96");
+		s = s.replace("{F8}", "\u1E97");
+		s = s.replace("{F9}", "\u1E98");
+		s = s.replace("{F10}", "\u1E99");
+		s = s.replace("{F11}", "\u1E9A");
+		s = s.replace("{F12}", "\u1E9B");
+		s = s.replace("{F13}", "\u1E9C");
+		s = s.replace("{F14}", "\u1E9D");
+		s = s.replace("{F15}", "\u1E9E");
+		s = s.replace("{F16}", "\u1E9F");
+		s = s.replace("{F17}", "\u1EA0");
+		s = s.replace("{F18}", "\u1EA1");
+		s = s.replace("{F19}", "\u1EA2");
+		s = s.replace("{F20}", "\u1EA3");
+		s = s.replace("{F21}", "\u1EA4");
+		s = s.replace("{F22}", "\u1EA5");
+		s = s.replace("{F23}", "\u1EA6");
+		s = s.replace("{F24}", "\u1EA7");
+		s = s.replace("{BACKSPACE}", "\b");
+		char c = s.charAt(0);
+		try {
+			Robot r = new Robot();
+			switch (c) {
+			case '\u0259': r.keyPress(KeyEvent.VK_WINDOWS); break;
+			case '\u025A': r.keyPress(KeyEvent.VK_SHIFT); break;
+			case '\u025B': r.keyPress(KeyEvent.VK_DELETE); break;
+			case '\u025C': r.keyPress(KeyEvent.VK_CONTROL); break;
+			case '\u025D': r.keyPress(KeyEvent.VK_ALT); break;
+			case '\u025E': r.keyPress(KeyEvent.VK_ESCAPE); break;
+			case '\u025F': r.keyPress(KeyEvent.VK_META); break;
+			case '\u1E90': r.keyPress(KeyEvent.VK_F1); break;
+			case '\u1E91': r.keyPress(KeyEvent.VK_F2); break;
+			case '\u1E92': r.keyPress(KeyEvent.VK_F3); break;
+			case '\u1E93': r.keyPress(KeyEvent.VK_F4); break;
+			case '\u1E94': r.keyPress(KeyEvent.VK_F5); break;
+			case '\u1E95': r.keyPress(KeyEvent.VK_F6); break;
+			case '\u1E96': r.keyPress(KeyEvent.VK_F7); break;
+			case '\u1E97': r.keyPress(KeyEvent.VK_F8); break;
+			case '\u1E98': r.keyPress(KeyEvent.VK_F9); break;
+			case '\u1E99': r.keyPress(KeyEvent.VK_F10); break;
+			case '\u1E9A': r.keyPress(KeyEvent.VK_F11); break;
+			case '\u1E9B': r.keyPress(KeyEvent.VK_F12); break;
+			case '\u1E9C': r.keyPress(KeyEvent.VK_F13); break;
+			case '\u1E9D': r.keyPress(KeyEvent.VK_F14); break;
+			case '\u1E9E': r.keyPress(KeyEvent.VK_F15); break;
+			case '\u1E9F': r.keyPress(KeyEvent.VK_F16); break;
+			case '\u1EA0': r.keyPress(KeyEvent.VK_F17); break;
+			case '\u1EA1': r.keyPress(KeyEvent.VK_F18); break;
+			case '\u1EA2': r.keyPress(KeyEvent.VK_F19); break;
+			case '\u1EA3': r.keyPress(KeyEvent.VK_F20); break;
+			case '\u1EA4': r.keyPress(KeyEvent.VK_F21); break;
+			case '\u1EA5': r.keyPress(KeyEvent.VK_F22); break;
+			case '\u1EA6': r.keyPress(KeyEvent.VK_F23); break;
+			case '\u1EA7': r.keyPress(KeyEvent.VK_F24); break;
+			case 'a':r.keyPress(KeyEvent.VK_A); break;
+			case 'b':r.keyPress(KeyEvent.VK_B); break;
+			case 'c':r.keyPress(KeyEvent.VK_C); break;
+			case 'd':r.keyPress(KeyEvent.VK_D); break;
+			case 'e':r.keyPress(KeyEvent.VK_E); break;
+			case 'f':r.keyPress(KeyEvent.VK_F); break;
+			case 'g':r.keyPress(KeyEvent.VK_G); break;
+			case 'h':r.keyPress(KeyEvent.VK_H); break;
+			case 'i':r.keyPress(KeyEvent.VK_I); break;
+			case 'j':r.keyPress(KeyEvent.VK_J); break;
+			case 'k':r.keyPress(KeyEvent.VK_K); break;
+			case 'l':r.keyPress(KeyEvent.VK_L); break;
+			case 'm':r.keyPress(KeyEvent.VK_M); break;
+			case 'n':r.keyPress(KeyEvent.VK_N); break;
+			case 'o':r.keyPress(KeyEvent.VK_O); break;
+			case 'p':r.keyPress(KeyEvent.VK_P); break;
+			case 'q':r.keyPress(KeyEvent.VK_Q); break;
+			case 'r':r.keyPress(KeyEvent.VK_R); break;
+			case 's':r.keyPress(KeyEvent.VK_S); break;
+			case 't':r.keyPress(KeyEvent.VK_T); break;
+			case 'u':r.keyPress(KeyEvent.VK_U); break;
+			case 'v':r.keyPress(KeyEvent.VK_V); break;
+			case 'w':r.keyPress(KeyEvent.VK_W); break;
+			case 'x':r.keyPress(KeyEvent.VK_X); break;
+			case 'y':r.keyPress(KeyEvent.VK_Y); break;
+			case 'z':r.keyPress(KeyEvent.VK_Z); break;
+			case '`':r.keyPress(KeyEvent.VK_BACK_QUOTE); break;
+			case '0':r.keyPress(KeyEvent.VK_0); break;
+			case '1':r.keyPress(KeyEvent.VK_1); break;
+			case '2':r.keyPress(KeyEvent.VK_2); break;
+			case '3':r.keyPress(KeyEvent.VK_3); break;
+			case '4':r.keyPress(KeyEvent.VK_4); break;
+			case '5':r.keyPress(KeyEvent.VK_5); break;
+			case '6':r.keyPress(KeyEvent.VK_6); break;
+			case '7':r.keyPress(KeyEvent.VK_7); break;
+			case '8':r.keyPress(KeyEvent.VK_8); break;
+			case '9':r.keyPress(KeyEvent.VK_9); break;
+			case '-':r.keyPress(KeyEvent.VK_MINUS); break;
+			case '=':r.keyPress(KeyEvent.VK_EQUALS); break;
+			case '\t':r.keyPress(KeyEvent.VK_TAB); break;
+			case '\n':r.keyPress(KeyEvent.VK_ENTER); break;
+			case '[':r.keyPress(KeyEvent.VK_OPEN_BRACKET); break;
+			case ']':r.keyPress(KeyEvent.VK_CLOSE_BRACKET); break;
+			case '\\':r.keyPress(KeyEvent.VK_BACK_SLASH); break;
+			case ';':r.keyPress(KeyEvent.VK_SEMICOLON); break;
+			case '\'':r.keyPress(KeyEvent.VK_QUOTE); break;
+			case ',':r.keyPress(KeyEvent.VK_COMMA); break;
+			case '.':r.keyPress(KeyEvent.VK_PERIOD); break;
+			case '/':r.keyPress(KeyEvent.VK_SLASH); break;
+			case ' ':r.keyPress(KeyEvent.VK_SPACE); break;
+			case '\b' : r.keyPress(KeyEvent.VK_BACK_SPACE);break;
+			default:
+				throw new IllegalArgumentException("Cannot type" + s);
+			}
+		}
+		catch(AWTException e) { //throw an error
+			throw new RuntimeException(e);
+		}
+	}
+	
+	private static void keyUp( String s ) {
+		//compensate for special characters
+		s = s.replace("{ENTER}", "\n");
+		s = s.replace("{TAB}", "\t");
+		s = s.replace("{WIN}", "\u0259");
+		s = s.replace("{SHIFT}", "\u025A");
+		s = s.replace("{DELETE}", "\u025B");
+		s = s.replace("{CTRL}", "\u025C");
+		s = s.replace("{ALT}", "\u025D");
+		s = s.replace("{ESC}", "\u025E");
+		s = s.replace("{MAC}", "\u025F");
+		s = s.replace("{F1}", "\u1E90");
+		s = s.replace("{F2}", "\u1E91");
+		s = s.replace("{F3}", "\u1E92");
+		s = s.replace("{F4}", "\u1E93");
+		s = s.replace("{F5}", "\u1E94");
+		s = s.replace("{F6}", "\u1E95");
+		s = s.replace("{F7}", "\u1E96");
+		s = s.replace("{F8}", "\u1E97");
+		s = s.replace("{F9}", "\u1E98");
+		s = s.replace("{F10}", "\u1E99");
+		s = s.replace("{F11}", "\u1E9A");
+		s = s.replace("{F12}", "\u1E9B");
+		s = s.replace("{F13}", "\u1E9C");
+		s = s.replace("{F14}", "\u1E9D");
+		s = s.replace("{F15}", "\u1E9E");
+		s = s.replace("{F16}", "\u1E9F");
+		s = s.replace("{F17}", "\u1EA0");
+		s = s.replace("{F18}", "\u1EA1");
+		s = s.replace("{F19}", "\u1EA2");
+		s = s.replace("{F20}", "\u1EA3");
+		s = s.replace("{F21}", "\u1EA4");
+		s = s.replace("{F22}", "\u1EA5");
+		s = s.replace("{F23}", "\u1EA6");
+		s = s.replace("{F24}", "\u1EA7");
+		s = s.replace("{BACKSPACE}", "\b");
+		char c = s.charAt(0);
+		try {
+			Robot r = new Robot();
+			switch (c) {
+			case '\u0259': r.keyRelease(KeyEvent.VK_WINDOWS); break;
+			case '\u025A': r.keyRelease(KeyEvent.VK_SHIFT); break;
+			case '\u025B': r.keyRelease(KeyEvent.VK_DELETE); break;
+			case '\u025C': r.keyRelease(KeyEvent.VK_CONTROL); break;
+			case '\u025D': r.keyRelease(KeyEvent.VK_ALT); break;
+			case '\u025E': r.keyRelease(KeyEvent.VK_ESCAPE); break;
+			case '\u025F': r.keyRelease(KeyEvent.VK_META); break;
+			case '\u1E90': r.keyRelease(KeyEvent.VK_F1); break;
+			case '\u1E91': r.keyRelease(KeyEvent.VK_F2); break;
+			case '\u1E92': r.keyRelease(KeyEvent.VK_F3); break;
+			case '\u1E93': r.keyRelease(KeyEvent.VK_F4); break;
+			case '\u1E94': r.keyRelease(KeyEvent.VK_F5); break;
+			case '\u1E95': r.keyRelease(KeyEvent.VK_F6); break;
+			case '\u1E96': r.keyRelease(KeyEvent.VK_F7); break;
+			case '\u1E97': r.keyRelease(KeyEvent.VK_F8); break;
+			case '\u1E98': r.keyRelease(KeyEvent.VK_F9); break;
+			case '\u1E99': r.keyRelease(KeyEvent.VK_F10); break;
+			case '\u1E9A': r.keyRelease(KeyEvent.VK_F11); break;
+			case '\u1E9B': r.keyRelease(KeyEvent.VK_F12); break;
+			case '\u1E9C': r.keyRelease(KeyEvent.VK_F13); break;
+			case '\u1E9D': r.keyRelease(KeyEvent.VK_F14); break;
+			case '\u1E9E': r.keyRelease(KeyEvent.VK_F15); break;
+			case '\u1E9F': r.keyRelease(KeyEvent.VK_F16); break;
+			case '\u1EA0': r.keyRelease(KeyEvent.VK_F17); break;
+			case '\u1EA1': r.keyRelease(KeyEvent.VK_F18); break;
+			case '\u1EA2': r.keyRelease(KeyEvent.VK_F19); break;
+			case '\u1EA3': r.keyRelease(KeyEvent.VK_F20); break;
+			case '\u1EA4': r.keyRelease(KeyEvent.VK_F21); break;
+			case '\u1EA5': r.keyRelease(KeyEvent.VK_F22); break;
+			case '\u1EA6': r.keyRelease(KeyEvent.VK_F23); break;
+			case '\u1EA7': r.keyRelease(KeyEvent.VK_F24); break;
+			case 'a':r.keyRelease(KeyEvent.VK_A); break;
+			case 'b':r.keyRelease(KeyEvent.VK_B); break;
+			case 'c':r.keyRelease(KeyEvent.VK_C); break;
+			case 'd':r.keyRelease(KeyEvent.VK_D); break;
+			case 'e':r.keyRelease(KeyEvent.VK_E); break;
+			case 'f':r.keyRelease(KeyEvent.VK_F); break;
+			case 'g':r.keyRelease(KeyEvent.VK_G); break;
+			case 'h':r.keyRelease(KeyEvent.VK_H); break;
+			case 'i':r.keyRelease(KeyEvent.VK_I); break;
+			case 'j':r.keyRelease(KeyEvent.VK_J); break;
+			case 'k':r.keyRelease(KeyEvent.VK_K); break;
+			case 'l':r.keyRelease(KeyEvent.VK_L); break;
+			case 'm':r.keyRelease(KeyEvent.VK_M); break;
+			case 'n':r.keyRelease(KeyEvent.VK_N); break;
+			case 'o':r.keyRelease(KeyEvent.VK_O); break;
+			case 'p':r.keyRelease(KeyEvent.VK_P); break;
+			case 'q':r.keyRelease(KeyEvent.VK_Q); break;
+			case 'r':r.keyRelease(KeyEvent.VK_R); break;
+			case 's':r.keyRelease(KeyEvent.VK_S); break;
+			case 't':r.keyRelease(KeyEvent.VK_T); break;
+			case 'u':r.keyRelease(KeyEvent.VK_U); break;
+			case 'v':r.keyRelease(KeyEvent.VK_V); break;
+			case 'w':r.keyRelease(KeyEvent.VK_W); break;
+			case 'x':r.keyRelease(KeyEvent.VK_X); break;
+			case 'y':r.keyRelease(KeyEvent.VK_Y); break;
+			case 'z':r.keyRelease(KeyEvent.VK_Z); break;
+			case '`':r.keyRelease(KeyEvent.VK_BACK_QUOTE); break;
+			case '0':r.keyRelease(KeyEvent.VK_0); break;
+			case '1':r.keyRelease(KeyEvent.VK_1); break;
+			case '2':r.keyRelease(KeyEvent.VK_2); break;
+			case '3':r.keyRelease(KeyEvent.VK_3); break;
+			case '4':r.keyRelease(KeyEvent.VK_4); break;
+			case '5':r.keyRelease(KeyEvent.VK_5); break;
+			case '6':r.keyRelease(KeyEvent.VK_6); break;
+			case '7':r.keyRelease(KeyEvent.VK_7); break;
+			case '8':r.keyRelease(KeyEvent.VK_8); break;
+			case '9':r.keyRelease(KeyEvent.VK_9); break;
+			case '-':r.keyRelease(KeyEvent.VK_MINUS); break;
+			case '=':r.keyRelease(KeyEvent.VK_EQUALS); break;
+			case '\t':r.keyRelease(KeyEvent.VK_TAB); break;
+			case '\n':r.keyRelease(KeyEvent.VK_ENTER); break;
+			case '[':r.keyRelease(KeyEvent.VK_OPEN_BRACKET); break;
+			case ']':r.keyRelease(KeyEvent.VK_CLOSE_BRACKET); break;
+			case '\\':r.keyRelease(KeyEvent.VK_BACK_SLASH); break;
+			case ';':r.keyRelease(KeyEvent.VK_SEMICOLON); break;
+			case '\'':r.keyRelease(KeyEvent.VK_QUOTE); break;
+			case '\"':r.keyRelease(KeyEvent.VK_QUOTEDBL); break;
+			case ',':r.keyRelease(KeyEvent.VK_COMMA); break;
+			case '.':r.keyRelease(KeyEvent.VK_PERIOD); break;
+			case '/':r.keyRelease(KeyEvent.VK_SLASH); break;
+			case ' ':r.keyRelease(KeyEvent.VK_SPACE); break;
+			case '\b' : r.keyRelease(KeyEvent.VK_BACK_SPACE);break;
+			default:
+				throw new IllegalArgumentException("Cannot type" + s);
+			}
+		}
+		catch(AWTException e) { //throw an error
+			throw new RuntimeException(e);
+		}
+	}
+
+	private static void keyPress( String s) {
+		keyDown(s);
+		keyUp(s);
+	}
+	
+	private static void cKeyDown( int i ) {
+		try {
+			Robot r = new Robot();
+			r.keyPress(i);
+		}
+		catch(AWTException e) { //throw an error
+			throw new RuntimeException(e);
+		}
+	}
+	
+	private static void cKeyUp( int i ) {
+		try {
+			Robot r = new Robot();
+			r.keyRelease(i);
+		}
+		catch(AWTException e) { //throw an error
+			throw new RuntimeException(e);
+		}
+	}
+
+	private static void cKeyPress( int i ) {
+		cKeyDown(i);
+		cKeyUp(i);
+	}
+		
+	private static void sleep( int s ) {
+		try {
+			Robot r = new Robot();
+			r.delay(s);
+		} catch(AWTException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	private static void mouseMove( int x, int y) {
+		try {
+			Robot r = new Robot();
+			r.mouseMove(x,y);
+		} catch(AWTException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	private static void mouseClick( String button, int x, int y ) {
+		try {
+			Robot r = new Robot();
+			r.mouseMove(x,y);
+			if (button.equals("left")) {
+				r.mousePress(InputEvent.BUTTON1_MASK); //press the left mouse button
+				r.mouseRelease(InputEvent.BUTTON1_MASK); //release the left mouse button
+			} else {
+				if (button.equals("right")) {
+					r.mousePress(InputEvent.BUTTON3_MASK); //press the right mouse button
+					r.mouseRelease(InputEvent.BUTTON3_MASK); //release the right mouse button
+				}
+			}
+		} catch(AWTException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	private static void mouseClick( String button ) {
+		int X = MouseInfo.getPointerInfo().getLocation().x; //get the X coordinate of the mouse
+		int Y = MouseInfo.getPointerInfo().getLocation().y; //get the Y coordinate of the mouse
+		mouseClick(button, X, Y);
+	}
+	
+	private static void mouseDown( String button, int x, int y ) {
+		try {
+			Robot r = new Robot();
+			r.mouseMove(x,y);
+			if (button.equals("left")) {
+				r.mousePress(InputEvent.BUTTON1_MASK); //press the left mouse button
+			} else {
+				if (button.equals("right")) {
+					r.mousePress(InputEvent.BUTTON3_MASK); //press the right mouse button
+				}
+			}
+		} catch(AWTException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	private static void mouseDown( String button ) {
+		int X = MouseInfo.getPointerInfo().getLocation().x; //get the X coordinate of the mouse
+		int Y = MouseInfo.getPointerInfo().getLocation().y; //get the Y coordinate of the mouse
+		mouseDown(button, X, Y);
+	}
+	
+	private static void mouseUp( String button ) {
+		try {
+			Robot r = new Robot();
+			if (button.equals("left")) {
+				r.mouseRelease(InputEvent.BUTTON1_MASK); //Release the left mouse button
+			} else {
+				if (button.equals("right")) {
+					r.mouseRelease(InputEvent.BUTTON3_MASK); //Release the right mouse button
+				}
+			}
+		} catch(AWTException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	private static void mouseClickDrag( String button, int x1, int y1, int x2, int y2 ) {
+		mouseDown(button, x1, y1);
+		sleep(50);
+		mouseMove(x2,y2);
+		sleep(50);
+		mouseUp(button);
+	}
+	
+	private static void mouseScrollUp() {
+		try {
+			Robot r = new Robot();
+			r.mouseWheel(-100);
+		} catch(AWTException e) {
+			throw new RuntimeException(e);
+		}
+	}
+		
+	private static void mouseScrollDown() {
+		try {
+			Robot r = new Robot();
+			r.mouseWheel(100);
+		} catch(AWTException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	private static void msgBox( String Text, String Title ) {
+		JOptionPane.showMessageDialog(null,Text,Title,JOptionPane.PLAIN_MESSAGE); //Show message box
+	}
+	
+	private static void msgBox( String Text ) {
+		msgBox(Text,"");
+	}
+	
+	private static void print( String Text ) {
+		System.out.println(Text);
+	}
+	
+	private static void print( int Text ) {
+		System.out.println(Text);
+	}
+	
+	private static void print( double Text ) {
+		System.out.println(Text);
+	}
+	
+	private static void print( char Text ) {
+		System.out.println(Text);
+	}
+	
+	private static boolean screenShot( String fileName, int x1, int y1, int x2, int y2 ) {
+		try {      
+			if ( !(fileName.toLowerCase().endsWith(".png")) ) {
+				fileName = fileName + ".png";
+			}			
+			Robot robot = new Robot();
+			BufferedImage img = robot.createScreenCapture(new Rectangle( x1, y1, x2, y2 ));
+			File save_path = new File(fileName);
+			ImageIO.write(img, "png", save_path);
+			return true;
+		} catch(Exception e) {
+			return false;
+		}
+	}
+	
+	private static boolean screenShot( String fileName ) {
+		try {
+			Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+			screenShot( fileName, 0, 0, screen.width, screen.height );
+			return true;
+		} catch(Exception e) {
+			return false;
+		}
+	}
+
+	private static boolean open( String fileName ) {
+		if (fileName.toLowerCase().startsWith("http://") || fileName.toLowerCase().startsWith("https://")) {
+			try {
+				Desktop d = Desktop.getDesktop();
+				URI path = new URI(fileName);
+				d.browse(path);
+				return true;
+			} catch(Throwable t) {
+				return false;
+			}
+		} else {
+			try {
+				Desktop d = Desktop.getDesktop();
+				File file = new File(fileName);
+				d.open(file);
+				return true;
+			} catch(Throwable t) {
+				return false;
+			}
+		}
+	}
+	
+	private static String dateTimeGet() {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date date = new Date();
+		return dateFormat.format(date);
+	}
+	
+	private static String exec( String cmd ) {
+		//for windows cmd = "cmd /c command"
+		//for linux cmd = "command"
+		try {
+			String result = "";
+			String line;
+			Process p = Runtime.getRuntime().exec(cmd);
+			BufferedReader bri = new BufferedReader
+			(new InputStreamReader(p.getInputStream()));
+			BufferedReader bre = new BufferedReader
+			(new InputStreamReader(p.getErrorStream()));
+			while ((line = bri.readLine()) != null) {
+				result = result + line + "\n";
+			}
+			bri.close();
+			while ((line = bre.readLine()) != null) {
+				result = result + line + "\n";
+			}
+			bre.close();
+			p.waitFor();
+			return result;
+		} catch (Exception err) {
+			return null;
+		}
+		
+	}
+	
+	private static String inputBox( String Text, String Title) {
+		String result = JOptionPane.showInputDialog(null, Text, Title, 1);
+		return result;
+	}
+	
+	private static String inputBox( String Text ) {
+		String result = JOptionPane.showInputDialog(null, Text, "", 1);
+		return result;
+	}
+	
+	private static String inputList( String Text, String Title, String[] Choices, String Default ) {
+		String choice = (String) JOptionPane.showInputDialog(null, Text, Title, JOptionPane.QUESTION_MESSAGE, null, Choices, Default);
+		return choice;
+	}
+	
+	private static String inputList( String Text, String Title, String[] Choices ) {
+		String choice = inputList( Text, Title, Choices, Choices[0] );
+		return choice;
+	}
+	
+	private static String inputPassword ( String Text, String Title, String Okay ) {
+		JPasswordField passwordField = new JPasswordField();
+		Object[] obj = {Text + "\n\n", passwordField};
+		Object[] stringArray = {Okay};
+		if (JOptionPane.showOptionDialog(null, obj, Title,
+		JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, stringArray, obj) == JOptionPane.YES_OPTION) {
+			return new String(passwordField.getPassword());
+		} else {
+			return null;
+		}
+	}
+	
+	private static String inputPassword ( String Text, String Title ) {
+		return inputPassword( Text, Title, "Submit" );
+	}
+	
+	private static String inputPassword ( String Text ) {
+		return inputPassword( Text, "Password Input" );
+	}
+	
+	private static String toStr(Object x) {
+		try {return String.valueOf(x);} catch(Exception e) {return null;}
+	}
+	
+	private static String toStr(char[] x) {
+		try {
+			String result = "";
+			for (Character i : x) {
+				result+=i.toString();
+			}
+			return result;
+		} catch(Exception e) {return null;}
+	}
+	
+	private static int toInt(String x) {
+		try {
+			double y = Double.parseDouble(x); //convert to double in case of decimals
+			int z = (int)y; //convert to int
+			return z; //return 
+		} catch(Exception e) {return 0;}
+	}
+	
+	private static int toInt(double x) {
+		try {
+			int y = (int)x; //convert to int
+			return y; //return
+		} catch(Exception e) {return 0;}
+	}
+	
+	private static int toInt(char x) {
+		try {
+			int y = x - 48; //convert to int
+			return y; //return
+		} catch(Exception e) {return 0;}
+	}
+	
+	private static double toDouble(int x) {
+		double newDub = x * 1.0;
+		return newDub;
+	}
+	
+	private static double toDouble(String x) {
+		double y = Double.parseDouble(x); //convert to double in case of decimals
+		return y;
+	}
+	
+	private static char toChar (String x) {
+		try {return x.charAt(0);} catch(Exception e) {return '0';}
+	}
+	
+	private static int intGetRandom( int min, int max ) {
+		Random rand = new Random();
+		// nextInt is normally exclusive of the top value,
+		// so add 1 to make it inclusive
+		int randomNum = rand.nextInt((max - min) + 1) + min;
+		return randomNum;
+	}
+	
+	private static int[] cursorGetPos() {
+		int X = MouseInfo.getPointerInfo().getLocation().x; //get the X coordinate of the mouse
+		int Y = MouseInfo.getPointerInfo().getLocation().y; //get the Y coordinate of the mouse
+		int[] coords = {X,Y};
+		return coords;
+	}
+	
+	private static Color pixelGetColor( int x, int y ) {
+		try {
+			Robot r = new Robot();
+			Color pixel = r.getPixelColor( x, y );
+			return pixel;
+		} catch(AWTException e) {
+			throw new RuntimeException(e);
+		}
+	}
+		
+	private static int[] pixelSearch ( Color c, int x1, int y1, int x2, int y2, int speed ){
+		try {      		
+			Robot r = new Robot(); //create robot to capture the screen
+			BufferedImage screen = r.createScreenCapture(new Rectangle( x1, y1, x2+1, y2+1 )); //read the screen into a buffered image (+1's to avoid index out of range)
+			
+			int cVal = c.getRGB(); //get value of color to compare to pixels
+			
+			//speed 1 - xMod = 1 yMod = 1
+			//10201 - 100%
+			//speed 2 - xMod = 2 yMod = 1
+			//5050 - 50%
+			//speed 3 - xMod = 2 yMod = 2
+			//2500 - 25%
+			//speed 4 - xMod = 3 yMod = 2
+			//1650 - 16%
+			//speed 5 - xMod = 3 yMod = 3
+			//1089 - 10%
+			
+			int xMod;
+			int yMod;
+			switch (speed) {
+				case 1: xMod = 1; yMod = 1; break;
+				case 2: xMod = 2; yMod = 1; break;
+				case 3: xMod = 2; yMod = 2; break;
+				case 4: xMod = 3; yMod = 2; break;
+				case 5: xMod = 3; yMod = 3; break;
+				default: xMod = 1; yMod = 1; break;
+			}
+			
+			int[] preXArray = new int[x2-x1+1]; //create an array to hold all X values in image
+			int iterator = 0;
+			while (iterator <= x2) {
+				preXArray[iterator] = x1 + iterator;
+				iterator++;
+			}
+			int [] preYArray = new int[y2-y1+1]; //create an array to hold all Y values in image
+			iterator = 0;
+			while (iterator <= y2) {
+				preYArray[iterator] = y1 + iterator;
+				iterator++;
+			}
+			
+			int[] xArray = new int[(preXArray.length/xMod)];
+			int step = 0;
+			for (int i = 0; i < preXArray.length; i+=xMod) {
+				try {xArray[step] = preXArray[i];} catch(Exception e) {}
+				step++;
+			}
+			
+			int[] yArray = new int[(preYArray.length/yMod)];
+			step = 0;
+			for (int i = 0; i < preYArray.length; i+=yMod) {
+				try {yArray[step] = preYArray[i];} catch(Exception e) {}
+				step++;
+			}
+			
+			for (int yVal : yArray) {
+				for (int xVal : xArray) {
+					int color = screen.getRGB(xVal, yVal); //get the color of pixel at coords (xVal, yVal)	
+					if (color == cVal) { //if we find the color
+						int[] cPos = {xVal, yVal};
+						return cPos;
+					}
+				}
+			}
+			
+			int[] returnVal = {-1,-1};
+			return returnVal;
+		} catch(Exception e) {
+			int[] returnVal = {-3,-3};
+			return returnVal;
+		}
+	}
+	
+	private static int[] pixelSearch ( Color c, int x1, int y1, int x2, int y2 ) {
+		return pixelSearch( c, x1, y1, x2, y2, 1);
+	}
+	
+	private static int[] pixelSearch ( Color c ) {
+		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+		return pixelSearch( c, 0, 0, screen.width, screen.height );
+	}
+	
+	private static void clipboardPut(String s) {
+		StringSelection stringSelection = new StringSelection (s);
+        Clipboard clpbrd = Toolkit.getDefaultToolkit ().getSystemClipboard ();
+        clpbrd.setContents (stringSelection, null);
+	}
+	
+	private static String fileRead( String fPath ) {
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(fPath));
+			StringBuilder data = new StringBuilder();
+			
+			String line = br.readLine();
+			while (line!=null) {
+				data.append(line);
+				data.append('\n');
+				line = br.readLine();
+			}
+			
+			String fileData = data.toString();
+			br.close();
+			return fileData;
+		} catch(Exception e) {
+			return "null";
+		}
+	}
+	
+	private static boolean fileWrite( String fPath, String data ) {
+		BufferedWriter bufferedWriter = null;
+        try {
+            File myFile = new File(fPath);
+            if (!myFile.exists()) {
+                myFile.createNewFile();
+            }
+            Writer writer = new FileWriter(myFile);
+            bufferedWriter = new BufferedWriter(writer);
+            bufferedWriter.write(data);
+			return true;
+        } catch (IOException e) {
+            return false;
+        } finally{
+            try{
+                if(bufferedWriter != null) bufferedWriter.close();
+            } catch(Exception ex){
+            }
+        }
+	}
+	
+	private static String[] fileList( String dir ) {
+		try{
+			File[] fileList = new File(dir).listFiles(); //java code to get a list of files
+			int fileNum = fileList.length; //store length of file list
+			String[] files = new String[fileNum];
+			
+			for (int i=0; i<fileNum; i++) {
+				files[i] = fileList[i].toString();
+			}
+			return files;
+		} catch(Exception e) {
+			String[] files = {"null"};
+			return files;
+		}
+	}
+	
+	private static String clipboardGet() {
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+		Clipboard clipboard = toolkit.getSystemClipboard();
+		String result;
+		try {
+			result = (String) clipboard.getData(DataFlavor.stringFlavor);
+			return result;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+}
