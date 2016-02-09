@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Constants | Javauto Documentation</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="../assets/css/simple-sidebar.css" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="../assets/js/jquery.js"></script>
+    <!-- load the side bar -->
+    <script src="../assets/js/loadsidebar.js"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>    <![endif]-->
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrapper">
+      <!-- insert the sidebar -->
+      <div id="loadSideBar"></div>
+      <!-- Page Content -->
+      <div id="page-content-wrapper"> <a href="#menu-toggle" style="outline: 0; position: fixed;"
+          id="menu-toggle">&lt;&lt;</a>
+        <div class="container-fluid" style="width: 80%">
+          <div class="row" id="constants">
+            <div class="col-lg-12">
+              <h1>Constants</h1>
+              <p>Constants are global variables that contain system information
+                -- such as os or screen dimensions -- that is sometimes
+                advantageous to know at run time.</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="FILE_SEP">
+            <div class="col-lg-12">
+              <h1>FILE_SEP</h1>
+              <p>The file separator that a system uses. On Windows this will be
+                <code>\</code> and on Linux and Mac it will be <code>/</code>.</p>
+              <p> </p>
+              <p>Type: <code>String</code></p>
+              <p>Example:</p>
+              <pre class="prettyprint">print("This system uses '" + FILE_SEP + "' as a file separator.");</pre>
+              <p>Output:</p>
+              <pre>This system uses '/' as a file separator.</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="SCREEN_HEIGHT">
+            <div class="col-lg-12">
+              <h1>SCREEN_HEIGHT</h1>
+              <p>The height of the screen measured in pixels. Note that with
+                multiple screens this may only apply to the main monitor.</p>
+              <p> </p>
+              <p>Type: <code>int</code></p>
+              <p>Example:</p>
+              <pre class="prettyprint">print("This screen is " + SCREEN_HEIGHT + "px tall.");</pre>
+              <p>Output:</p>
+              <pre>This screen is 768px tall.</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="SCREEN_WIDTH">
+            <div class="col-lg-12">
+              <h1>SCREEN_WIDTH</h1>
+              <p>The width of the screen measured in pixels. Note that with
+                multiple screens this may only apply to the main monitor.</p>
+              <p> </p>
+              <p>Type: <code>int</code></p>
+              <p>Example:</p>
+              <pre class="prettyprint">print("This screen is " + SCREEN_WIDTH + "px wide.");</pre>
+              <p>Output:</p>
+              <pre>This screen is 1366px wide.</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="SYSTEM_OS">
+            <div class="col-lg-12">
+              <h1>SYSTEM_OS</h1>
+              <p>The operating system in use.</p>
+              <p> </p>
+              <p>Type: <code>String</code></p>
+              <p>Example:</p>
+              <pre class="prettyprint">print("Running OS: " + SYSTEM_OS);</pre>
+              <p>Output:</p>
+              <pre>Running OS: Linux</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="USER_HOME_DIR">
+            <div class="col-lg-12">
+              <h1>USER_HOME_DIR</h1>
+              <p>The path to the user's home directory.</p>
+              <p> </p>
+              <p>Type: <code>String</code></p>
+              <p>Example:</p>
+              <pre class="prettyprint">print("User's home directory: " + USER_HOME_DIR);</pre>
+              <p>Output:</p>
+              <pre>User's home directory: /home/john</pre>
+              <p>Note that on *nix systems running this as root, even when
+                logged in as a different user, will yield a different result.</p>
+              <p>If you run your program with <code>sudo</code> the output will
+                look like this:</p>
+              <pre>User's home directory: /root</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="TEMP_DIR">
+            <div class="col-lg-12">
+              <h1>TEMP_DIR</h1>
+              <p>The path to the temporary directory on the system.</p>
+              <p> </p>
+              <p>Type: <code>String</code></p>
+              <p>Example:</p>
+              <pre class="prettyprint">print("Temp directory: " + TEMP_DIR);</pre>
+              <p>Output:</p>
+              <pre>Temp directory: /tmp</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="USER_NAME">
+            <div class="col-lg-12">
+              <h1>USER_NAME</h1>
+              <p>The current user's user name.</p>
+              <p> </p>
+              <p>Type: <code>String</code></p>
+              <p>Example:</p>
+              <pre class="prettyprint">print("User name: " + USER_NAME);</pre>
+              <p>Output:</p>
+              <pre>User name: john</pre>
+              <p>Note that on *nix systems running this as root, even when
+                logged in as a different user, will yield a different result.</p>
+              <p>If you run your program with <code>sudo</code> the output will
+                look like this:</p>
+              <pre>User name: root</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="WORKING_DIR">
+            <div class="col-lg-12">
+              <h1>WORKING_DIR</h1>
+              <p>The directory the program is being run from.</p>
+              <p> </p>
+              <p>Type: <code>String</code></p>
+              <p>Example:</p>
+              <pre class="prettyprint">print("This is being run from " + WORKING_DIR);</pre>
+              <p>Output:</p>
+              <pre>This is being run from /home/john/javauto/</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /#page-content-wrapper --> </div>
+    <!-- /#wrapper -->
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-33173418-2', 'auto');
+    ga('send', 'pageview');
+
+    </script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- Prettify for source code highlighting -->
+    <script src="../js/prettify/run_prettify.js"> </script>
+    <!-- Make prettify elements match bootstrap theme -->
+    <style>
+        pre.prettyprint {
+            padding: 8px;
+            border-color: #CCC;
+        }
+    </style>
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+	var toggleText = document.getElementById("menu-toggle");
+	if (toggleText.innerHTML == "&gt;&gt;") {
+            toggleText.innerHTML = "<<";
+        } else {
+            toggleText.innerHTML = ">>";
+        }
+    });
+    </script>
+  </body>
+</html>

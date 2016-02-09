@@ -1,0 +1,1956 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Functions | Javauto Documentation</title>
+    <!-- Bootstrap Core CSS -->
+    <!-- Bootstrap Core CSS -->
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="../assets/css/simple-sidebar.css" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="../assets/js/jquery.js"></script>
+    <!-- load the side bar -->
+    <script src="../assets/js/loadsidebar.js"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>    <![endif]-->
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrapper">
+      <!-- insert the sidebar -->
+      <div id="loadSideBar"></div>
+      <!-- Page Content -->
+      <div id="page-content-wrapper"> <a href="#menu-toggle" style="outline: 0; position: fixed;"
+          id="menu-toggle">&lt;&lt;</a>
+        <div class="container-fluid" style="width: 80%">
+          <div class="row" id="functions">
+            <div class="col-lg-12">
+              <h1>Functions</h1>
+              <p>Below are functions exclusive to Javauto. Many are designed to
+                interact with the mouse, keyboard, or screen instead of just the
+                system.</p>
+              <p>Note that these functions are all designed to make your life
+                easier, especially with regards to emulating some AutoIt like
+                functions that are verbose to re-write in Java, <b>but this is
+                  not an exhaustive list of functions that you may use in your
+                  code.</b> For the most part, Java is also acceptable.</p>
+              <p>For example, instead of this:</p>
+              <pre class="prettyprint">msgBox("Hello world");</pre>
+              <p>You could write the java equivalent:</p>
+              <pre class="prettyprint">JOptionPane.showMessageDialog(null,"Hello world","",JOptionPane.PLAIN_MESSAGE);</pre>
+              <p>One is just (quite) a bit more verbose.</p>
+              <p>The exceptions to this are user defined functions and class
+                variables. Instead of writing these in Java you must use native
+                <a href="">user defined functions</a> and <a href="">global
+                  variables.</a></p>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="clipboardGet">
+            <div class="col-lg-12">
+              <h1>clipboardGet</h1>
+              <p>Get the contents of the clip board (as string).</p>
+              <pre>clipboardGet()</pre>
+              <br>
+              <p>Parameters: none</p>
+              <p>Returns:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>String</code></td>
+                    <td>The clip board contents as a string. Returns null if the
+                      data inside the clip board cannot be read to a string.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Example:</p>
+              <pre class="prettyprint">//add something to the clipboard
+String clip = "put me in the clipboard!";
+clipboardPut(clip);
+
+//retrieve clipboard contents
+String clipContents = clipboardGet();
+msgBox(clipContents);</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="clipboardPut">
+            <div class="col-lg-12">
+              <h1>clipboardPut</h1>
+              <p>Put a string in the system clipboard. On Ubuntu Linux the way
+                the clipboard is handled only allows information in the
+                clipboard to be accessible while the application that put it
+                there is running. </p>
+              <pre>clipboardPut(String s)</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>s</code></td>
+                    <td>String data to put in the clip board.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns: <code>void</code></p>
+              <p>Example:</p>
+              <pre class="prettyprint">//add something to the clipboard
+String clip = "put me in the clipboard!";
+clipboardPut(clip);
+
+//retrieve clipboard contents
+String clipContents = clipboardGet();
+msgBox(clipContents);</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="cursorGetPos">
+            <div class="col-lg-12">
+              <h1>cursorGetPos</h1>
+              <p>Get the current position of the mouse cursor in an integer
+                array.</p>
+              <pre>cursorGetPos()</pre>
+              <br>
+              <p>Parameters: none</p>
+              <p>Returns:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>int[]</code></td>
+                    <td>Integer array formatted like [x position, y position].</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Example:</p>
+              <pre class="prettyprint">//get the cursor position
+int[] cursorPos = cursorGetPos();
+msgBox("Cursor Position is (" + cursorPos[0] + "," + cursorPos[1] + ")");</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="exec">
+            <div class="col-lg-12">
+              <h1>exec</h1>
+              <p>Execute a shell command and return the output. This will not
+                display a visible process and it will wait for the command to
+                finish before continuing. On Windows systems (the os can be
+                checked with the {@link OS_SYSTEM} constant) the command string
+                must be of the format "cmd /c command". </p>
+              <pre>exec( String cmd )</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>cmd</code></td>
+                    <td>The command to execute.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>String</code></td>
+                    <td>The output of the command.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Example:</p>
+              <pre class="prettyprint">//attempt to guess platform and then run the dir or the ls command depending on windows/other
+if (SYSTEM_OS.toLowerCase().contains("windows")) {
+	String cmdOutPut = exec("cmd /c dir"); 
+	print(cmdOutPut);
+} else {
+	String cmdOutPut = exec("ls"); 
+	print(cmdOutPut);
+}
+</pre> </div>
+          </div>
+          <div class="row" id="exit">
+            <div class="col-lg-12">
+              <h1>exit</h1>
+              <p>Terminates the currently running Java Virtual Machine. The argument
+                 serves as a status code. This code can be used by Windows or the DOS
+                 variable <strong>%ERRORLEVEL%</strong>. On *nix to check the exit code we can simply print
+                 the <strong>$?</strong> special variable in bash. This variable will print the exit code
+                 of the last run command. </p>
+              <pre>exit( int code )</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>code [optional]</code></td>
+                    <td>Integer that sets the script's return code.(The default is 0.) 
+                    Exit code is: 
+                      <ul>
+                        <li><strong>0</strong> when execution went fine</li>
+                        <li><strong>1</strong>, <strong>-1</strong>, whatever != 0 when some error occurred</li> 
+                      </ul>  
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns: <code>void</code></p>
+              <p>Example:</p>
+              <pre class="prettyprint">//Terminate script if no command-line arguments
+if(args.length  == 0){ 
+     exit(1);
+}
+              </pre> </div>
+          </div>          
+          <hr>
+          <div class="row" id="fileAppend">
+            <div class="col-lg-12">
+              <h1>fileAppend</h1>
+              <p>Append data to a file. If the file does not exist it will be
+                created. </p>
+              <pre>fileAppend( String fPath, String data )</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>fPath</code></td>
+                    <td>The path of the file to which we are appending data.</td>
+                  </tr>
+                  <tr>
+                    <td><code>data</code></td>
+                    <td>The data to be appended to the file.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>boolean</code></td>
+                    <td>If appending to the file failed false will be returned.
+                      Otherwise will return true.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Example:</p>
+              <pre class="prettyprint">Example Code</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="fileCreate">
+            <div class="col-lg-12">
+              <h1>fileCreate</h1>
+              <p>Create a file. Similar to the unix touch command. </p>
+              <pre>fileCreate(String fPath)</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>fPath</code></td>
+                    <td>Path of file to be created.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns: <code>void</code></p>
+              <p>Example:</p>
+              <pre class="prettyprint">Example Code</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="fileDelete">
+            <div class="col-lg-12">
+              <h1>fileDelete</h1>
+              <p>Delete a file. This will not work on a directory. </p>
+              <pre>fileDelete(String fPath)</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>fPath</code></td>
+                    <td>Path of the file to delete.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns: <code>void</code></p>
+              <p>Example:</p>
+              <pre class="prettyprint">Example Code</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="fileExists">
+            <div class="col-lg-12">
+              <h1>fileExists</h1>
+              <p>Check if a file or directory exists. </p>
+              <pre>fileExists(String fPath)</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>fPath</code></td>
+                    <td>Path of the file or directory to check.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>boolean</code></td>
+                    <td>Will return true if the file or directory exists,
+                      otherwise returns false.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Example:</p>
+              <pre class="prettyprint">Example Code</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="fileGetName">
+            <div class="col-lg-12">
+              <h1>fileGetName</h1>
+              <p>Get the base name of a file, including its extension. </p>
+              <pre>fileGetName(String fPath)</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>fPath</code></td>
+                    <td>Path of the file.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>String</code></td>
+                    <td>Name of the file (including extension).</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Example:</p>
+              <pre class="prettyprint">Example Code</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="fileGetPath">
+            <div class="col-lg-12">
+              <h1>fileGetPath</h1>
+              <p>Get the full file path of a specific file or directory. </p>
+              <pre>fileGetPath(String fPath)</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>fPath</code></td>
+                    <td>Path of the file.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>String</code></td>
+                    <td>The full (absolute) path of the file or directory.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Example:</p>
+              <pre class="prettyprint">Example Code</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="fileList">
+            <div class="col-lg-12">
+              <h1>fileList</h1>
+              <p>Get a list of file names in a directory as an array. </p>
+              <pre>fileList( String dir )</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>dir</code></td>
+                    <td>Directory to list files from.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>String[]</code></td>
+                    <td>String array of file names.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Example:</p>
+              <pre class="prettyprint">// get all the files in the working dir<br>String[] files = fileList(WORKING_DIR);<br><br>// list the files<br>for (String file : files)<br>	print(file);</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="fileRead">
+            <div class="col-lg-12">
+              <h1>fileRead</h1>
+              <p>Read the contents of a file to a string. </p>
+              <pre>fileRead( String fPath )</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>fPath</code></td>
+                    <td>Path of the file to read.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>String</code></td>
+                    <td>The contents of the file as a string.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Example:</p>
+              <pre class="prettyprint">// write data to a test file
+String data = inputBox("Enter some data to write");
+boolean success = fileWrite("test.txt", data);
+if (!success) {<br>	print("There was an error writing to file.");<br>	System.exit(1);<br>}<br><br>// read data from the file
+String test = fileRead("test.txt");
+msgBox(test); // display the data</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="fileWrite">
+            <div class="col-lg-12">
+              <h1>fileWrite</h1>
+              <p>Write data to a file -- this will overwrite the file. If the
+                file does not exist it will be created. </p>
+              <pre>fileWrite( String fPath, String data )</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>fPath</code></td>
+                    <td>Path of the file to write to.</td>
+                  </tr>
+                  <tr>
+                    <td><code>data</code></td>
+                    <td>Data to write to the file as a string.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>boolean</code></td>
+                    <td>Returns false if the file write failed. Otherwise
+                      returns true.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Example:</p>
+              <pre class="prettyprint">// write data to a test file
+String data = inputBox("Enter some data to write");
+boolean success = fileWrite("test.txt", data);
+if (!success) {<br>	print("There was an error writing to file.");<br>	System.exit(1);<br>}<br><br>// read data from the file
+String test = fileRead("test.txt");
+msgBox(test); // display the data</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="getDateTime">
+            <div class="col-lg-12">
+              <h1>getDateTime</h1>
+              <p>Get the system date and time in yyyy/MM/dd HH:mm:ss format.</p>
+              <pre>getDateTime()</pre>
+              <br>
+              <p>Parameters: none</p>
+              <p>Returns:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>String</code></td>
+                    <td>The date and time as a string in yyyy/MM/dd HH:mm:ss
+                      format.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Example:</p>
+              <pre class="prettyprint">print(getDateTime());<br>// output: 2015/01/05 15:59:25</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="getFlaggedArg">
+            <div class="col-lg-12">
+              <h1>getFlaggedArg</h1>
+              <p>Get the value of a flagged argument. So if the program is
+                executed like java program -v --file aFile.txt -o outFile.txt
+                getFlaggedArg(args, "-f|--file") would return aFile.txt. </p>
+              <pre>getFlaggedArg(String[] args, String flag)</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>args</code></td>
+                    <td>The String[] args from the main function. Pass them in
+                      by just saying args.</td>
+                  </tr>
+                  <tr>
+                    <td><code>flag</code></td>
+                    <td>The flags to get values from, separated by | like
+                      -f|--file.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>String</code></td>
+                    <td>The argument directly after the detected flag.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Example:</p>
+              <pre class="prettyprint">Example Code</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="getMilliTime">
+            <div class="col-lg-12">
+              <h1>getMilliTime</h1>
+              <p>Gets the current time in milliseconds. There are <code>1000</code>
+                milliseconds in 1 second, so divide by 1000 to find seconds.</p>
+              <pre>getMilliTime()</pre>
+              <br>
+              <p>Parameters: none</p>
+              <p>Returns:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>long</code></td>
+                    <td>This method returns the difference, measured in
+                      milliseconds, between the current time and midnight,
+                      January 1, 1970 UTC(coordinated universal time).</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Example:</p>
+              <pre class="prettyprint">Example Code</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="getNanoTime">
+            <div class="col-lg-12">
+              <h1>getNanoTime</h1>
+              <p>Gets the current value from the most precise system timer on a
+                computer, in nanoseconds. It returns nanoseconds since some
+                fixed but arbitrary time. This fixed time could even be in the
+                future, resulting in a negative value. <code>getNanoTime</code>
+                should be used to measure the time between events, not as a wall
+                clock.<br>
+                There are <code>1,000,000,000</code> nanoseconds in a second,
+                and <code>1,000,000</code> nanoseconds in a millisecond.</p>
+              <pre>getNanoTime()</pre>
+              <br>
+              <p>Parameters: none</p>
+              <p>Returns:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>long</code></td>
+                    <td>The current value of the system timer, in nanoseconds.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Example:</p>
+              <pre class="prettyprint">Example Code</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="getPage">
+            <div class="col-lg-12">
+              <h1>getPage</h1>
+              <p>Get the source of a web page as HTML. </p>
+              <pre>getPage(String url)</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>url</code></td>
+                    <td>The page to fetch.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>String</code></td>
+                    <td>The page source (HTML) as a string.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Example:</p>
+              <pre class="prettyprint">Example Code</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="getSpeed">
+            <div class="col-lg-12">
+              <h1>getSpeed</h1>
+              <p>Get the current speed. The speed controls how quickly mouse and
+                keyboard actions happen. The default speed is .95 (95%). A speed
+                of 1.00 (100%) makes mouse and keyboard actions instant.</p>
+              <pre>getSpeed()</pre>
+              <br>
+              <p>Parameters: none</p>
+              <p>Returns:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>double</code></td>
+                    <td>The speed as a decimal from 0.00 to 1.00.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Example:</p>
+              <pre class="prettyprint">Example Code</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="httpGet">
+            <div class="col-lg-12">
+              <h1>httpGet</h1>
+              <p>Send a HTTP GET request to a URL. </p>
+              <pre>httpGet(String url)</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>url</code></td>
+                    <td>The URL to query, including the get parameters.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>String</code></td>
+                    <td>Page response as HTML.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Example:</p>
+              <pre class="prettyprint">Example Code</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="httpPost">
+            <div class="col-lg-12">
+              <h1>httpPost</h1>
+              <p>Send a HTTP POST request to a given URL with the specified
+                parameters. </p>
+              <pre>httpPost(String postUrl, String[][] parameters)</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>postUrl</code></td>
+                    <td>URL to send the post request to.</td>
+                  </tr>
+                  <tr>
+                    <td><code>parameters</code></td>
+                    <td>Post parameters to send to URL. Parameters must be
+                      defined in a two dimesional array like [ [key, value],
+                      [key, value], [key, value] ].</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>String</code></td>
+                    <td>Page response as HTML.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Example:</p>
+              <pre class="prettyprint">Example Code</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="input">
+            <div class="col-lg-12">
+              <h1>input</h1>
+              <p>Get user input from the console. </p>
+              <pre>input()
+input( String prompt )</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>prompt</code></td>
+                    <td>The prompt to display to the user.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>String</code></td>
+                    <td>The user's response.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Example:</p>
+              <pre class="prettyprint">// get input from command line and print it
+String userResponse = input("Enter your name: "); // get user input from the console
+String greeting = "Hello " + userResponse + ", it's nice to meet you.";
+print(greeting);</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="inputBox">
+            <div class="col-lg-12">
+              <h1>inputBox</h1>
+              <p>Display an input dialog box to the user. </p>
+              <pre>inputBox( String Text )
+inputBox( String Text, String Title)</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>Text</code></td>
+                    <td>Text to be displayed in the dialog box.</td>
+                  </tr>
+                  <tr>
+                    <td><code>Title</code></td>
+                    <td>Title of the dialog box.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>String</code></td>
+                    <td>User's input as a string.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Example:</p>
+              <pre class="prettyprint">//get user input
+String input = inputBox("Enter something: ", "Input Box");
+print("You said: " + input);</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="inputList">
+            <div class="col-lg-12">
+              <h1>inputList</h1>
+              <p>Show a dialog allowing the user to choose from a drop-down list
+                of items. </p>
+              <pre>inputList( String Text, String Title, String[] Choices )
+inputList( String Text, String Title, String[] Choices, int Default )</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>Text</code></td>
+                    <td>Text to be displayed in the dialog box.</td>
+                  </tr>
+                  <tr>
+                    <td><code>Title</code></td>
+                    <td>Title of the dialog box.</td>
+                  </tr>
+                  <tr>
+                    <td><code>Choices</code></td>
+                    <td>The options in the drop-down as a string array.</td>
+                  </tr>
+                  <tr>
+                    <td><code>Default</code></td>
+                    <td>The index of the default option in the Choices array.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>String</code></td>
+                    <td>The user's choice as a string.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Example:</p>
+              <pre class="prettyprint">//open a website based on user choice
+String[] inputListObjects = {"https://www.google.com/", "http://www.yahoo.com/", "http://www.bing.com/", "http://www.defaultChoice.com/"};
+String inputListResult = inputList( "Choose a website: ", "Choose one", inputListObjects, inputListObjects[3] );
+open(inputListResult); </pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="inputPassword">
+            <div class="col-lg-12">
+              <h1>inputPassword</h1>
+              <p>Get a password from the user. Displays a dialog box where the
+                input is masked. </p>
+              <pre>inputPassword ( String Text )
+inputPassword ( String Text, String Title )
+inputPassword ( String Text, String Title, String Okay )</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>Text</code></td>
+                    <td>Text to be displayed in the dialog box.</td>
+                  </tr>
+                  <tr>
+                    <td><code>Title</code></td>
+                    <td>Title of the dialog box.</td>
+                  </tr>
+                  <tr>
+                    <td><code>Okay</code></td>
+                    <td>text of the okay button, eg. okay, submit, go, login,
+                      etc.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>String</code></td>
+                    <td>The user's input</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Example:</p>
+              <pre class="prettyprint">//get password input
+String passwordResult = inputPassword("Input a password: "); 
+print("Your password is: " + passwordResult);</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="intGetRGB">
+            <div class="col-lg-12">
+              <h1>intGetRGB</h1>
+              <p>Get the RGB values of an integer color value. </p>
+              <pre>intGetRGB(int i)</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>i</code></td>
+                    <td>The integer value of the color.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>int[]</code></td>
+                    <td>An array with three values: [red, green, blue].</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Example:</p>
+              <pre class="prettyprint">Example Code</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="intGetRandom">
+            <div class="col-lg-12">
+              <h1>intGetRandom</h1>
+              <p>Get a random integer between two inclusive values. </p>
+              <pre>intGetRandom( int min, int max )</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>min</code></td>
+                    <td>The minimum integer value to be returned (inclusive).</td>
+                  </tr>
+                  <tr>
+                    <td><code>max</code></td>
+                    <td>The minimum integer value to be returned (inclusive).</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>int</code></td>
+                    <td>A random integer between min and max.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Example:</p>
+              <pre class="prettyprint">//get a random number between 0 and 5
+int random = intGetRandom(0,5); // could return 0, 1, 2, 3, 4, or 5
+print(random); 
+
+//move mouse to random coordinates
+int randX = intGetRandom(0, SCREEN_WIDTH);
+int randY = intGetRandom(0, SCREEN_HEIGHT);
+mouseMove(randX, randY);</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="isDirectory">
+            <div class="col-lg-12">
+              <h1>isDirectory</h1>
+              <p>Check if a path is a directory. </p>
+              <pre>isDirectory(String fPath)</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>fPath</code></td>
+                    <td>Path to evaluate.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>boolean</code></td>
+                    <td>True if directory, false if not.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Example:</p>
+              <pre class="prettyprint">Example Code</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="isFile">
+            <div class="col-lg-12">
+              <h1>isFile</h1>
+              <p>Returns true for a file but not for a directory (or a
+                non-existent file). </p>
+              <pre>isFile(String fPath)</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>fPath</code></td>
+                    <td>Path to evaluate.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>boolean</code></td>
+                    <td>Returns true if fPath is a file, otherwise returns
+                      false.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Example:</p>
+              <pre class="prettyprint">Example Code</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="isFlagged">
+            <div class="col-lg-12">
+              <h1>isFlagged</h1>
+              <p>Check if a flag is present within the command line arguments. </p>
+              <pre>isFlagged(String[] args, String flag)</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>args</code></td>
+                    <td>The String[] args from the main function. Pass them in
+                      by just saying args.</td>
+                  </tr>
+                  <tr>
+                    <td><code>flag</code></td>
+                    <td>The flag(s) to check for, separate possible values with
+                      a pipe | For instance -h|--help could match either one.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>boolean</code></td>
+                    <td>True or false based on whether the flag is present.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Example:</p>
+              <pre class="prettyprint">Example Code</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="join">
+            <div class="col-lg-12">
+              <h1>join</h1>
+              <p>Join a string array into a string with a delimeter. </p>
+              <pre>join(String joinString, String[] strArray)</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>joinString</code></td>
+                    <td>The delimeter with which to join the string array.</td>
+                  </tr>
+                  <tr>
+                    <td><code>strArray</code></td>
+                    <td>The array to join.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>String</code></td>
+                    <td>The array as a string with the delimeter between each
+                      index.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Example:</p>
+              <pre class="prettyprint">// create a string array<br>String[] pets = {"cat", "dog", "elephant", "fish"};<br><br>// join it with various delimeters<br>print( join(" ", pets) );<br>print( join(", ", pets) );<br>print( join("\n", pets) );</pre>
+              <p>Output:</p>
+              <pre class="prettyprint">cat dog elephant fish
+cat, dog, elephant, fish
+cat
+dog
+elephant
+fish</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="keyCombo">
+            <div class="col-lg-12">
+              <h1>keyCombo</h1>
+              <p>Send a key combination such as Ctrl + Alt + Delete. The keys
+                must be passed in as a string array. </p>
+              <pre>keyCombo(int... keys)
+keyCombo(String... keys)</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>keys</code></td>
+                    <td>The key combination to be executed as a String array.
+                      The keys in this array must be in order and may contain
+                      special keys. The array can be of any size.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns: <code>void</code></p>
+              <p>Example:</p>
+              <pre class="prettyprint">Example Code</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="keyDown">
+            <div class="col-lg-12">
+              <h1>keyDown</h1>
+              <p>Hold down a key until {@link keyUp} is called on the same key.
+                If keyUp is not called the key will become "stuck." Special keys
+                can also be used here. </p>
+              <pre>keyDown( int i )
+keyDown( String str )</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>str</code></td>
+                    <td>The key that will be held down. If there are multiple
+                      letters or keys specified only the first will be held
+                      down.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns: <code>void</code></p>
+              <p>Example:</p>
+              <pre class="prettyprint">Example Code</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="keyPress">
+            <div class="col-lg-12">
+              <h1>keyPress</h1>
+              <p>Simulate the press and release of a single key. Special keys
+                can be used here. </p>
+              <pre>keyPress( int i )
+keyPress( String s)</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>s</code></td>
+                    <td>The single key to press or release. If more than one key
+                      is specified only one key will be pressed.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns: <code>void</code></p>
+              <p>Example:</p>
+              <pre class="prettyprint">Example Code</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="keyUp">
+            <div class="col-lg-12">
+              <h1>keyUp</h1>
+              <p>Release a key that has been held down. Special keys can also be
+                used here. </p>
+              <pre>keyUp( int i )
+keyUp( String str )</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>str</code></td>
+                    <td>The single key that will be released. If more than one
+                      key is specified only the first will be released.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns: <code>void</code></p>
+              <p>Example:</p>
+              <pre class="prettyprint">Example Code</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="mkDir">
+            <div class="col-lg-12">
+              <h1>mkDir</h1>
+              <p>Create a directory. </p>
+              <pre>mkDir(String dirName)</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>dirName</code></td>
+                    <td>The name of the directory to create. If the directory
+                      already exists no action will be taken.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns: <code>void</code></p>
+              <p>Example:</p>
+              <pre class="prettyprint">Example Code</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="mouseClick">
+            <div class="col-lg-12">
+              <h1>mouseClick</h1>
+              <p>Perform a mouse click. </p>
+              <pre>mouseClick( String button )
+mouseClick( String button, int x, int y )</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>button</code></td>
+                    <td>either "left", "right", or "middle"</td>
+                  </tr>
+                  <tr>
+                    <td><code>x</code></td>
+                    <td>The X value of the coordinate that will be clicked on.</td>
+                  </tr>
+                  <tr>
+                    <td><code>y</code></td>
+                    <td>The Y value of the coordinate that willl be clicked on.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns: <code>void</code></p>
+              <p>Example:</p>
+              <pre class="prettyprint">Example Code</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="mouseClickDrag">
+            <div class="col-lg-12">
+              <h1>mouseClickDrag</h1>
+              <p>Click and drag the mouse from one coordinate to another. </p>
+              <pre>mouseClickDrag( String button, int x1, int y1, int x2, int y2 )</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>button</code></td>
+                    <td>The mouse button to simulate. This value must be either
+                      "left", "right", or "middle".</td>
+                  </tr>
+                  <tr>
+                    <td><code>x1</code></td>
+                    <td>First coordinate X value.</td>
+                  </tr>
+                  <tr>
+                    <td><code>y1</code></td>
+                    <td>First coordinate Y value.</td>
+                  </tr>
+                  <tr>
+                    <td><code>x2</code></td>
+                    <td>Second coordinate X value.</td>
+                  </tr>
+                  <tr>
+                    <td><code>y2</code></td>
+                    <td>Second coordinate Y value.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns: <code>void</code></p>
+              <p>Example:</p>
+              <pre class="prettyprint">//click and drag the mouse from one location to another
+mouseClickDrag("left", 500, 500, 50, 50);</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="mouseDown">
+            <div class="col-lg-12">
+              <h1>mouseDown</h1>
+              <p>Press down a mouse button. If {@link mouseUp} is not called the
+                mouse will be stuck down. </p>
+              <pre>mouseDown( String button )
+mouseDown( String button, int x, int y )</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>button</code></td>
+                    <td>The mouse button to simulate. This value must be either
+                      "left", "right", or "middle".</td>
+                  </tr>
+                  <tr>
+                    <td><code>x</code></td>
+                    <td>The X value of the coordinate that will be clicked on.</td>
+                  </tr>
+                  <tr>
+                    <td><code>y</code></td>
+                    <td>The Y value of the coordinate that will be clicked on.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns: <code>void</code></p>
+              <p>Example:</p>
+              <pre class="prettyprint">//hold down the left mouse button for two seconds
+mouseDown("left"); //press the button
+sleep(2000);
+mouseUp("left"); //release the button</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="mouseMove">
+            <div class="col-lg-12">
+              <h1>mouseMove</h1>
+              <p>Move the mouse cursor to a certain position. The speed of the
+                mouse movement can be set with {@link setSpeed}. Note that mouse
+                coordinates can be found with the Javauto Helper. </p>
+              <pre>mouseMove( int xFinal, int yFinal)</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>xFinal</code></td>
+                    <td>The X value of the coordinate to move the mouse to.</td>
+                  </tr>
+                  <tr>
+                    <td><code>yFinal</code></td>
+                    <td>The Y value of the coordinate to move the mouse to.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns: <code>void</code></p>
+              <p>Example:</p>
+              <pre class="prettyprint">//move the mouse to coordinates
+mouseMove(50, 50);</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="mouseScrollDown">
+            <div class="col-lg-12">
+              <h1>mouseScrollDown</h1>
+              <p>Scroll the mouse wheel down once.</p>
+              <pre>mouseScrollDown()</pre>
+              <br>
+              <p>Parameters: none</p>
+              <p>Returns: <code>void</code></p>
+              <p>Example:</p>
+              <pre class="prettyprint">mouseScrollDown(); //scroll down
+sleep(1000); //wait one second
+mouseScrollUp(); //scroll up</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="mouseScrollUp">
+            <div class="col-lg-12">
+              <h1>mouseScrollUp</h1>
+              <p>Scroll the mouse wheel up once.</p>
+              <pre>mouseScrollUp()</pre>
+              <br>
+              <p>Parameters: none</p>
+              <p>Returns: <code>void</code></p>
+              <p>Example:</p>
+              <pre class="prettyprint">mouseScrollDown(); //scroll down
+sleep(1000); //wait one second
+mouseScrollUp(); //scroll up</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="mouseUp">
+            <div class="col-lg-12">
+              <h1>mouseUp</h1>
+              <p>Release a pressed mouse button. </p>
+              <pre>mouseUp( String button )</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>button</code></td>
+                    <td>The mouse button to simulate. This value must be either
+                      "left", "right", or "middle".</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns: <code>void</code></p>
+              <p>Example:</p>
+              <pre class="prettyprint">// hold down the left mouse button for two seconds
+mouseDown("left"); //press the button
+sleep(2000);
+mouseUp("left"); //release the button</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="msgBox">
+            <div class="col-lg-12">
+              <h1>msgBox</h1>
+              <p>Display a message dialog box until the user closes it or it
+                times out. </p>
+              <pre>msgBox( String Text )
+msgBox( String Text, String Title )
+msgBox(String Text, String Title, int Timeout)</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>Text</code></td>
+                    <td>Text to be displayed as the prompt in the dialog box.</td>
+                  </tr>
+                  <tr>
+                    <td><code>Title</code></td>
+                    <td>Title of the dialog window.</td>
+                  </tr>
+                  <tr>
+                    <td><code>Timeout</code></td>
+                    <td>Time (in milliseconds) to wait until until the window
+                      times out automatically.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns: <code>void</code></p>
+              <p>Example:</p>
+              <pre class="prettyprint">msgBox("This window will be active for five seconds.", "Timed msgBox", 5000);<br>msgBox("This window will be active until it is closed.", "Standard msgBox");</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="open">
+            <div class="col-lg-12">
+              <h1>open</h1>
+              <p>Open a file or URL in the default program. (This will be the
+                default browser if it's a URL.) </p>
+              <pre>open( String path )</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>path</code></td>
+                    <td>The URL or file to open. URLs must begin with http:// or
+                      https://</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>boolean</code></td>
+                    <td>Returns true on success. Returns false on failure.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Example:</p>
+              <pre class="prettyprint">// open google
+open("https://www.google.com/");
+
+// open a screenshot we take
+String fileName = "screen.png";
+screenShot(fileName);
+open(fileName);<br><br>// delete the screenshot after giving it a few seconds to open<br>sleep(3000);<br>fileDelete(fileName);
+</pre> </div>
+          </div>
+          <hr>
+          <div class="row" id="optionsBox">
+            <div class="col-lg-12">
+              <h1>optionsBox</h1>
+              <p>Display a message box with custom button options. </p>
+              <pre>optionsBox(String Text, String Title, String[] buttons)
+optionsBox(String Text, String Title, String[] buttons, String defaultButton)</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>Text</code></td>
+                    <td>Text to display as a prompt.</td>
+                  </tr>
+                  <tr>
+                    <td><code>Title</code></td>
+                    <td>Title of the dialog window.</td>
+                  </tr>
+                  <tr>
+                    <td><code>buttons</code></td>
+                    <td>String array of button names to be available.</td>
+                  </tr>
+                  <tr>
+                    <td><code>defaultButton</code></td>
+                    <td>The default button to be selected when "Enter" is
+                      pressed. defaultButton should be the text of the desired
+                      default button.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>int</code></td>
+                    <td>The index of selected button within the buttons array.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Example:</p>
+              <pre class="prettyprint">// display a message box with custom buttons<br>String[] buttons = {"Yes", "No", "Maybe so"};<br>int i = optionsBox("Allow the mouse to move?", "Response Required", buttons, buttons[0]);<br><br>// manage the result<br>if (i == 0) // if they selected the first button (yes)<br>	mouseMove(50, 50);<br>else if (i == 1) // if they selected the second button (no)<br>	print("Not moving the mouse.");<br>else if (i == 2) // if they selected the third button (maybe so)<br>	if ( intGetRandom(0,1) == 0 ) // construct a 50-50 chance that we move the mouse<br>		mouseMove(50, 50);<br>	else<br>		print("Mouse not moved.");</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="pixelGetColor">
+            <div class="col-lg-12">
+              <h1>pixelGetColor</h1>
+              <p>Get the color of a certain pixel as an integer. </p>
+              <pre>pixelGetColor( int x, int y )</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>x</code></td>
+                    <td>X coordinate of pixel.</td>
+                  </tr>
+                  <tr>
+                    <td><code>y</code></td>
+                    <td>Y coordinate of pixel.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>int</code></td>
+                    <td>The integer representation of the pixel's color.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Example:</p>
+              <pre class="prettyprint">Example Code</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="pixelSearch">
+            <div class="col-lg-12">
+              <h1>pixelSearch</h1>
+              <p>Search for the coordinates of a pixel of a certain color within
+                an area. This will return the coordinates of the first pixel
+                found within the area that matches the search color. </p>
+              <pre>pixelSearch ( int colorInt )
+pixelSearch ( int colorInt, int x1, int y1, int x2, int y2 )
+pixelSearch ( int colorInt, int x1, int y1, int x2, int y2, int speed )</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>colorInt</code></td>
+                    <td>Integer representation of the color to search for.</td>
+                  </tr>
+                  <tr>
+                    <td><code>x1</code></td>
+                    <td>X value of top left coordinate.</td>
+                  </tr>
+                  <tr>
+                    <td><code>y1</code></td>
+                    <td>Y value of top left coordinate.</td>
+                  </tr>
+                  <tr>
+                    <td><code>x2</code></td>
+                    <td>X value of bottom right coordinate.</td>
+                  </tr>
+                  <tr>
+                    <td><code>y2</code></td>
+                    <td>Y value of bottom right coordinate.</td>
+                  </tr>
+                  <tr>
+                    <td><code>speed</code></td>
+                    <td>A value of 1-5 to describe how fast to search. A speed
+                      of 2 searches twice as fast as speed 1 except it only
+                      checks every other pixel, which is fine if the color
+                      you're trying to find is more than two pixels wide.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>int[]</code></td>
+                    <td>If the color is found coordinates are returned in an int
+                      array formatted like: [x, y]. If the color is not found it
+                      will return [-1,-1]. If there is an error executing the
+                      search it will return [-3, -3].</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Example:</p>
+              <pre class="prettyprint">Example Code</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="print">
+            <div class="col-lg-12">
+              <h1>print</h1>
+              <p>Print to the terminal. </p>
+              <pre>print( String s )
+print( Object obj )
+print( long l )
+print( int i )
+print( float f )
+print( double d )
+print( char[] s )
+print( char c )
+print( boolean b )</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>obj</code></td>
+                    <td>Object to print</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns: <code>void</code></p>
+              <p>Example:</p>
+              <pre class="prettyprint">Example Code</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="rgbGetInt">
+            <div class="col-lg-12">
+              <h1>rgbGetInt</h1>
+              <p>Get an integer representation of a color based on R,G,B values.
+              </p>
+              <pre>rgbGetInt(int r, int g, int b)</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>r</code></td>
+                    <td>r value.</td>
+                  </tr>
+                  <tr>
+                    <td><code>g</code></td>
+                    <td>g value.</td>
+                  </tr>
+                  <tr>
+                    <td><code>b</code></td>
+                    <td>b value.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>int</code></td>
+                    <td>The integer representation of the color.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Example:</p>
+              <pre class="prettyprint">Example Code</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="rmDir">
+            <div class="col-lg-12">
+              <h1>rmDir</h1>
+              <p>Delete a directory and its contents.</p>
+              <pre>rmDir(String filePath)</pre>
+              <br>
+              <p>Parameters: none</p>
+              <p>Returns: <code>void</code></p>
+              <p>Example:</p>
+              <pre class="prettyprint">Example Code</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="screenShot">
+            <div class="col-lg-12">
+              <h1>screenShot</h1>
+              <p>Take a screenshot and save to a PNG file. </p>
+              <pre>screenShot( String fileName )
+screenShot( String fileName, int x1, int y1, int x2, int y2 )</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>fileName</code></td>
+                    <td>Filename to save the PNG screenshot to.</td>
+                  </tr>
+                  <tr>
+                    <td><code>x1</code></td>
+                    <td>X value of top left coordinate.</td>
+                  </tr>
+                  <tr>
+                    <td><code>y1</code></td>
+                    <td>Y value of top left coordinate.</td>
+                  </tr>
+                  <tr>
+                    <td><code>x2</code></td>
+                    <td>X value of bottom right coordinate.</td>
+                  </tr>
+                  <tr>
+                    <td><code>y2</code></td>
+                    <td>Y value of bottom right coordinate.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns: <code>void</code></p>
+              <p>Example:</p>
+              <pre class="prettyprint">// take a screenshot of the whole screen and save to myScreenShot.png
+screenShot("myScreenShot.png");
+
+// take a partial screenshot from coordinates (0,0) to (100, 100)
+screenShot("anotherOne.png", 0,0, 100, 100);
+
+// open the screenshots<br>open("myScreenShot.png");<br>open("anotherOne.png"); </pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="send">
+            <div class="col-lg-12">
+              <h1>send</h1>
+              <p>Simulate keyboard input by "typing" the contents of str.
+                Special keys can also be typed. The speed at which this typing
+                occurs can be set with {@link setSpeed}. </p>
+              <pre>send(String str)</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>str</code></td>
+                    <td>The string to type, one letter (or special key) at a
+                      time.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns: <code>void</code></p>
+              <p>Example:</p>
+              <pre class="prettyprint">Example Code</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="setSpeed">
+            <div class="col-lg-12">
+              <h1>setSpeed</h1>
+              <p>Set the current speed. The speed controls how quickly mouse and
+                keyboard actions happen. The default speed is .95 (95%). A speed
+                of 1.00 (100%) makes mouse and keyboard actions instant. </p>
+              <pre>setSpeed(double spd)</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>spd</code></td>
+                    <td>The new speed as a double. This value must be between
+                      0.00 and 1.00, if it isn't no action will be taken. A
+                      speed of 1.00 will make mouse and keyboard actions
+                      instant.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns: <code>void</code></p>
+              <p>Example:</p>
+              <pre class="prettyprint">Example Code</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="sleep">
+            <div class="col-lg-12">
+              <h1>sleep</h1>
+              <p>Delay execution for an amount of milliseconds (1000
+                milliseconds = 1 second). </p>
+              <pre>sleep( int milliseconds )</pre>
+              <br>
+              <p>Parameters:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>milliseconds</code></td>
+                    <td>Time to delay; must be between 0 and 60,000ms. Only
+                      takes integer values.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Returns: <code>void</code></p>
+              <p>Example:</p>
+              <pre class="prettyprint">print("About to sleep for 1 second...");<br>sleep(1000);<br>print("All done.");</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="toChar">
+            <div class="col-lg-12">
+              <h1>toChar</h1>
+              <p>Convert to a char.</p>
+              <pre>toChar( char c )
+toChar( String s )</pre>
+              <br>
+              <p>Parameters: none</p>
+              <p>Returns:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>char</code></td>
+                    <td>none</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Example:</p>
+              <pre class="prettyprint">String s = "s";<br>char c = toChar(s);</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="toDouble">
+            <div class="col-lg-12">
+              <h1>toDouble</h1>
+              <p>Convert to a double.</p>
+              <pre>toDouble( byte b )
+toDouble( double d )
+toDouble( float f )
+toDouble( short s )
+toDouble( long l )
+toDouble( int i )
+toDouble( boolean b )
+toDouble( char c )
+toDouble( String s )</pre>
+              <br>
+              <p>Parameters: none</p>
+              <p>Returns:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>double</code></td>
+                    <td>none</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Example:</p>
+              <pre class="prettyprint">int i = 10;<br>double d = toDouble(i);<br>float f = toFloat(i);<br><br>print( i/3 ); // prints 3<br>print( d/3 ); // prints 3.3333333333333335<br>print( f/3 ); // print 3.3333333<strong>
+</strong></pre> </div>
+          </div>
+          <hr>
+          <div class="row" id="toFloat">
+            <div class="col-lg-12">
+              <h1>toFloat</h1>
+              <p>Convert to a float.</p>
+              <pre>toFloat( byte b )
+toFloat( double d )
+toFloat( float f )
+toFloat( short s )
+toFloat( long l )
+toFloat( int i )
+toFloat( boolean b )
+toFloat( char c )
+toFloat( String s )</pre>
+              <br>
+              <p>Parameters: none</p>
+              <p>Returns:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>float</code></td>
+                    <td>none</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Example:</p>
+              <pre class="prettyprint">int i = 10;<br>double d = toDouble(i);<br>float f = toFloat(i);<br><br>print( i/3 ); // prints 3<br>print( d/3 ); // prints 3.3333333333333335<br>print( f/3 ); // print 3.3333333<strong></strong></pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="toInt">
+            <div class="col-lg-12">
+              <h1>toInt</h1>
+              <p>Convert to an int.</p>
+              <pre>toInt( byte b )
+toInt( double d )
+toInt( float f )
+toInt( short s )
+toInt( long l )
+toInt( int i )
+toInt( boolean b )
+toInt( char c )
+toInt( String s )</pre>
+              <br>
+              <p>Parameters: none</p>
+              <p>Returns:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>int</code></td>
+                    <td>none</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Example:</p>
+              <pre class="prettyprint">String aNumber = "100";<br>int n = toInt(aNumber);<br>print( n/2 ); // prints 50</pre>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="toString">
+            <div class="col-lg-12">
+              <h1>toString</h1>
+              <p>Convert to string.</p>
+              <pre>toString( byte b )
+toString( double d )
+toString( float f )
+toString( short s )
+toString( long l )
+toString( int i )
+toString( boolean b )
+toString( char c )
+toString( String s )</pre>
+              <br>
+              <p>Parameters: none</p>
+              <p>Returns:</p>
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td><code>String</code></td>
+                    <td>none</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Example:</p>
+              <pre class="prettyprint">int i = 10;<br>double d = toInt(i);<br><br>String result = toString(i/3); // result now contains "3"<br>result = toString(d/3); // result now contains "3.3333333333333335"</pre>
+            </div>
+          </div>
+          <hr> </div>
+      </div>
+      <!-- /#page-content-wrapper --> </div>
+    <!-- /#wrapper -->
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-33173418-2', 'auto');
+    ga('send', 'pageview');
+
+    </script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <!-- Prettify for source code highlighting -->
+    <script src="../assets/js/prettify/run_prettify.js"> </script>
+    <!-- Make prettify elements match bootstrap theme -->
+    <style>
+        pre.prettyprint {
+            padding: 8px;
+            border-color: #CCC;
+        }
+    </style>
+    <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+	var toggleText = document.getElementById("menu-toggle");
+	if (toggleText.innerHTML == "&gt;&gt;") {
+            toggleText.innerHTML = "<<";
+        } else {
+            toggleText.innerHTML = ">>";
+        }
+    });
+    </script>
+  </body>
+</html>

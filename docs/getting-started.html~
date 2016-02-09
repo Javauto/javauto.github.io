@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Getting Started | Javauto Documentation</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="../assets/css/simple-sidebar.css" rel="stylesheet">
+    <link href="../assets/css/mens.css" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="../assets/js/jquery.js"></script>
+    <!-- load the side bar -->
+    <script src="../assets/js/loadsidebar.js"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>                <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>    <![endif]-->
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrapper">
+      <!-- insert the sidebar -->
+      <div id="loadSideBar"><span style="display: hidden;">placeholder</span></div>
+      <!-- Page Content -->
+      <div id="page-content-wrapper"> <a href="#menu-toggle" style="outline: 0; position: fixed;"
+          id="menu-toggle">&lt;&lt;</a>
+        <div class="container-fluid" style="width: 80%">
+          <div class="row" id="introduction">
+            <div class="col-lg-12">
+              <h1>Introduction</h1>
+              <p><strong>Javauto</strong> is an automation language, unique due to its ability to
+                perform mouse clicks, simulate keyboard input, and perform pixel
+                searches.</p>
+              <p>It compiles to executable code that runs on the <strong>JVM</strong> (Java
+                Virtual Machine), so any program you write will be cross
+                platform.</p>
+              <p>Keep reading for install instructions and code examples.</p>
+              <p>This getting started guide covers the first steps of learning
+                Javauto. Check out the <a target="_blank" href="learn-by-example.html">learn
+                  by example section</a> for more topics and tutorials.</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="installation">
+            <div class="col-lg-12">
+              <h1>Linux, Windows and Mac Installation</h1>
+	     <br>
+  	<div class="my-notify-info">Automated installers for these platforms are coming soon, until then you'll need to install manually.</div><br>
+              <p>In order to run and compile <strong>Javauto</strong> code you must have the <b>most
+                  current</b> <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">JDK</a>
+                installed. If you have an older version of the JDK installed we
+                advise updating to the newest version.</p>
+	      <hr><p>
+Download the latest source release: <a href="https://github.com/Javauto/javauto-core/releases">Latest release (1.0.0)</a></p>
+              <p>Finally, to make sure it installed correctly run:</p>
+              <pre>$ java -jar javauto.jar</pre>
+	      <p>You should see some output like:</p>
+	      <pre>Usage: javauto <options> <source files>
+Options:
+	-v	--verbose		compile in verbose mode
+	-g	--generate		generate .java and .class files
+	-gj	--generate-java		generate .java files
+	-gc	--generate-class	generate .class files</pre>
+
+		  <p>Now it's installed.</p>	
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="helloworld">
+            <div class="col-lg-12">
+              <h1>Hello World</h1><br>
+              <p>First you need to open a text editor that handles normal text.
+                This could be <code>Notepad</code>, <code>Notepad++</code>, <code>gedit</code>,
+                <code>vim</code>, <code>emacs</code>, <code>nano</code>, or
+                whichever editor you would like to use -- as long as the editor
+                saves in plain text format and <strong>not</strong> rich text
+                format.</p><br>
+	      <div class="my-notify-info">You can <strong><a href="https://github.com/Javauto/javauto-notepad-plusplus">download</a></strong> a syntax highlighting and auto completion for Javauto files in <strong>Notepad++</strong></div>	
+<br>
+              <p>This <strong>Hello World</strong> program is going to be a little bit different
+                from those of other languages. We're going to launch a message
+                box, control the mouse, and print to the command line.</p>
+              <p>Either copy and paste or type the following into your text
+                editor. Feel free to modify it and see what happens!</p>
+              <p>Go ahead and save this as <code>hello.javauto</code></p><br>
+              <div class="my-notify-info"><em>Note that Javauto file names must start with letters,
+                  cannot contain spaces, and must end in either <code>.javauto</code>
+                  or <code>.ja</code></em></div><br>
+              <pre class="prettyprint">msgBox("Hello world, press okay.", "Hello World"); // show message
+mouseMove(0,0); // move the mouse to 0, 0
+print("All finished!"); // print to the command line</pre><br>
+              <p>Now compile it using this command</p>
+              <pre>$ javauto hello.javauto</pre><br>
+              <p>If you want to see all the steps the compiler is taking, you
+                can run it with the verbose flag. This is especially useful when
+                determining what has caused an error.</p>
+              <pre>$ javauto -v hello.javauto</pre><br>
+              <p>Now that you have compiled your program, there will be a file
+                called <code>hello.jar</code>, you can run this file either by
+                double clicking it or invoking it from the command line:</p>
+              <pre>$ java -jar hello.jar</pre>
+	     <p><img align="center" src="../assets/images/hello.png"</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="helper">
+            <div class="col-lg-12">
+              <h1>Using the Helper</h1><br>
+<p>
+Download the latest source release: <a href="https://github.com/Javauto/javauto-helper/releases">Latest release (1.0.0)</a></p>
+
+              <p>To launch the helper run <code>$ java -jar javauto-helper.jar</code></p>
+              <p>This should launch a window that looks like this:</p><br>
+              <p><img title="Javauto Helper" alt="" src="../assets/images/helper-example.png"></p>
+              <br><p>The Mouse Coordinates field is self explanatory, and the other
+                fields will be covered in greater depth later on.</p><br>
+              <p>Sometimes it's useful to freeze the helper to keep the mouse
+                coordinates that are on the screen, to do this press <code>F8</code>
+                while <strong>the cursor is in the mouse coordinates text
+                  field.</strong></p><br>
+              <h3>Colors</h3>
+              <p>When working with colors you will usually want the integer
+                value, however you can convert from an R,G,B format to a single
+                integer format using <a href="functions.html#rgbGetInt" target="_blank"><code
+                    style="color: blue;">rgbGetInt( int r, int g, int b )</code></a>.</p>
+              <p>For instance, in the screenshot above, if you were to perform a
+                pixel search for a pixel matching the one that the cursor is
+                over you could do it in either of the two ways below.</p>
+              <pre class="prettyprint">int[] result = pixelSearch(-1317151);</pre>
+              <pre class="prettyprint">int color = rgbGetInt(235, 230, 225);
+int[] result = pixelSearch(color);</pre>
+              <p>Or, if you know the coordinates of a pixel but need its color,
+                you can use <a href="functions.html#pixelGetColor" target="_blank"><code
+                    style="color: blue;">pixelGetColor( int x, int y)</code></a></p>
+              <p>For more on pixel searching, look at <a href="functions.html#pixelSearch"
+                  target="_blank">the documentation for <code style="color: blue;">pixelSearch<br>
+                  </code></a></p>
+              <h3>Key Integer Values</h3>
+              <p>The helper can also be useful for determining the integer value
+                of a key on the keyboard.</p>
+              <p>In the screenshot below, I pressed <code>a</code> <strong>while
+                  the cursor was inside the Pressed Key field</strong>.</p>
+              <p><img title="Using the helper to find key int value" src="../assets/images/helper-key-example.png"></p>
+              <p>This means that <code>keyPress(65)</code> is equivalent to <code>keyPress("a")</code>.</p>
+              <p>This is helpful when you want to simulate the key press of a
+                non standard key, such as <code>Page Down</code> or <code>Insert</code>.</p>
+              <p>Take a look at <a target="_blank" href="special-keys.html">this
+                  special keys page</a> for more on simulating non-standard key
+                presses.</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row" id="mousekeyboard">
+            <div class="col-lg-12">
+              <h1>Simulating Mouse and Keyboard Input</h1>
+              <p>The two most common functions we will use to control the mouse
+                are <a target="_blank" title="mouseClick" href="functions.html#mouseClick"><code
+                    style="color: blue;">mouseClick</code></a> and <a target="_blank"
+                  href=" functions.html#mouseMove"><code
+                    style="color: blue;">mouseMove</code></a>. We can also use
+                functions such as <a target="_blank" href="functions.html#mouseClickDrag"><code
+                    style="color: blue;">mouseClickDrag</code></a>, <a target="_blank"
+                  href="functions.html#mouseUp"><code style="color: blue;">mouseUp</code></a>,
+                <a target="_blank" href="functions.html#mouseDown"><code style="color: blue;">mouseDown</code></a>,
+                <a target="_blank" href="functions.html#mouseScrollDown"><code style="color: blue;">mouseScrollDown</code></a>,
+                or <a target="_blank" href="functions.html#mouseScrollUp"><code
+                    style="color: blue;">mouseScrollUp</code></a> to control the
+                mouse.</p>
+              <p>For keyboard input we will often use <a href=" functions.html#send"
+                  target="_blank"><code style="color: blue;">send</code></a> and
+                <a href=" functions.html#keyCombo"
+                  target="_blank"><code style="color: blue;">keyCombo</code></a>.
+                <a target="_blank" href=" functions.html#keyPress"><code
+                    style="color: blue;">keyPress</code></a>, <a target="_blank"
+                  href=" functions.html#keyUp"><code
+                    style="color: blue;">keyUp</code></a>, and <a href=" functions.html#keyDown"><code
+                    style="color: blue;">keyDown</code></a> are also available.</p>
+              <p><a href="functions.html#setSpeed" target="_blank"><code style="color: blue;">setSpeed</code></a>
+                is used to control how fast mouse and keyboard events occur.</p>
+              <h3>Manipulating the Mouse</h3>
+              <p>For the purposes of this example use the <a href="#helper">helper</a>
+                to find the coordinates of an object to click on.</p>
+              <img title="Using the helper to find coordinates" alt="" src="../assets/images/helper-coordinates-example.png"><br>
+              <p><br>
+              </p>
+              <p>In this case, the coordinates of the blue arrow to the left are
+                <code>( 837, 287 )</code>.</p>
+              <p>If we want a script that will click on this arrow we can try
+                something like this:</p>
+              <pre class="prettyprint">mouseClick("left", 837, 287); // click the left mouse button at (837, 287)</pre>
+              <p>Conversely, if we want to right click on the arrow we would use
+                this:</p>
+              <pre class="prettyprint">mouseClick("right", 837, 287); // click the right mouse button at (837, 287)</pre>
+              <p>If we just want to move the mouse cursor over this blue arrow
+                we can try something like this:</p>
+              <pre class="prettyprint">mouseMove(837, 287); // move the mouse to (837, 287)</pre>
+              <p>Note that we can set the speed that the mouse moves from point
+                to point with <a href="functions.html#setSpeed" target="_blank"><code
+                    style="color: blue">setSpeed</code></a>. The default speed
+                is 95%. To get the current speed you can use <a href="functions.html#getSpeed"
+                  target="_blank"><code style="color: blue">getSpeed</code></a>,
+                so <code>print(getSpeed());</code> by itself will output <code>0.95</code></p>
+              <p>If the speed is set to 100% (<code>setSpeed(1.0)</code>) mouse
+                movements will take place instantly.</p>
+              <h3>Simulating Keyboard Input</h3>
+              <p>Simulating keyboard input is very simple, the below example
+                will work exactly as if you're typing on your keyboard.</p>
+              <pre class="prettyprint">send("This command will type all this text and press enter{ENTER}"); // type some stuff and press enter</pre>
+              <p>For this example we will create a blank text file and open it
+                in our default editor so that you can easily see the keyboard
+                input in action.</p>
+              <p>However, a text input field does not have to be in focus to use
+                these commands; it is as if you are sitting at your computer
+                pressing keys.</p>
+              <p>Go ahead and try running this example:</p>
+              <pre class="prettyprint">fileCreate("blanktext.txt"); // create a new text file
+open("blanktext.txt"); // open our text file with the default program
+sleep(1500);
+
+send("This looks like it is being typed really really fast!"); // simulate some typing
+send("{ENTER}"); // press enter
+send("{TAB}This is an indented line.{ENTER}"); // press tab and then type some stuff
+
+setSpeed(.75); // set the typing (and mouse movement) speed to 75%
+send("This is being typed at 75% speed."); // type some more text</pre>
+              <p>Running this example will reveal two important things to know
+                about sending keyboard input:&nbsp; the speed can be increased
+                or decreased with <a href="functions.html#setSpeed" target="_blank"><code
+                    style="color: blue;">setSpeed</code></a> and there are
+                strings such as <code>"{ENTER}"</code> that represent special
+                keys.</p>
+              <p>Look at <a target="_blank" href="special-keys.html">this
+                  list of special keys</a> for more.</p>
+              <p>Now let's say we want to save this file. On many editors this
+                can be done by pressing <code>Ctrl</code> + <code>s</code>.</p>
+              <p>We're going to use the <a href=" functions.html#keyCombo"
+                  target="_blank"><code style="color: blue;">keyCombo</code></a>
+                function for this one. We need to create a string array(<code>String[]</code>)
+                where each indice is one of the keys in the combination. Based
+                on the <a target="_blank" href="special-keys.html">list of
+                  special keys</a> we know that we can represent the <code>Ctrl</code>
+                key with the string <code>"{CTRL}"</code>. So we can define our
+                key array as: </p>
+              <pre class="prettyprint">String[] keys = {"{CTRL}", "s"};</pre>
+              <p>Then we can send this combination:</p>
+              <pre class="prettyprint">keyCombo(keys); // hold down CTRL, press s, release CTRL</pre>
+              <p>Or if we want to do it with one line:</p>
+              <pre class="prettyprint">keyCombo( new String[] {"{CTRL}", "s"} );</pre>
+              <p>Similarly, if we want to send <code>Ctrl</code> + <code>Alt</code> + <code>Delete</code>, we could use this:</p>
+              <pre class="prettyprint">keyCombo( new String[] {"{CTRL}", "{ALT}", "{DELETE}"} );</pre>
+              <p>(<a href=" functions.html#keyCombo"
+                  target="_blank"><code style="color: blue;">keyCombo</code></a> takes an array of any size)</p>
+            </div>
+          </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+        <!-- /#wrapper -->
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-33173418-2', 'auto');
+    ga('send', 'pageview');
+
+	</script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="../assets/js/bootstrap.min.js"></script>
+        <!-- Prettify for source code highlighting -->
+        <script src="../assets/js/prettify/run_prettify.js"> </script>
+        <!-- Make prettify elements match bootstrap theme -->
+        <style>
+        pre.prettyprint {
+            padding: 8px;
+            border-color: #CCC;
+        }
+        </style>
+        <!-- Menu Toggle Script -->
+        <script>
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+            var toggleText = document.getElementById("menu-toggle");
+            if (toggleText.innerHTML == "&gt;&gt;") {
+                toggleText.innerHTML = "<<";
+            } else {
+                toggleText.innerHTML = ">>";
+            }
+        });
+    </script> </div>
+    </div>
+  </body>
+</html>
